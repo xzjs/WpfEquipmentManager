@@ -8,8 +8,8 @@ namespace WpfEquipmentManager
 {
     class Equipment
     {
-        public int Id { get; set; }
-        public int EquipmentClassId { get; set; }
+        public long Id { get; set; }
+        public long EquipmentClassId { get; set; }
         public virtual EquipmentClass EquipmentClass { get; set; }
     }
 }

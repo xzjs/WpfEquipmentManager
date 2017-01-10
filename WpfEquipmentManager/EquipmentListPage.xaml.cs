@@ -16,11 +16,10 @@ namespace WpfEquipmentManager
 
             using (var context = new EmContext())
             {
-                var ecs = from a in context.EquipmentClasses
-                          select a;
+                var ecs = context.EquipmentClasses.ToList();
                 if (ecs!=null)
                 {
-                    DataGrid1.ItemsSource = ecs.ToList();
+                    DataGrid1.ItemsSource = ecs;
                 }
             }
         }

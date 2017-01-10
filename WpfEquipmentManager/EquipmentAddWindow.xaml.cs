@@ -27,24 +27,20 @@ namespace WpfEquipmentManager
             this.ecid = id;
             if (id == 0)
             {
-                this.Title = "添加设备";
+                Title = "添加设备";
+                ec = new EquipmentClass();
             }else
             {
-                this.Title = "编辑设备";
+                Title = "编辑设备";
                 using(var context=new EmContext())
                 {
                     var ecs = from a in context.EquipmentClasses
                              where a.Id == ecid
                              select a;
-                    this.ec = ecs.First();
-                    Name.Text = ec.Name;
-                    Num.Text = ec.Num.ToString();
-                    Price.Text = ec.Price.ToString();
-                    Type.Text = ec.Type;
-                    Detail.Text = ec.Detail;
-                    Remark.Text = ec.Remark;
+                    ec = ecs.First();
                 }
             }
+            EquipmentClassDetail.DataContext = ec;
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
@@ -55,15 +51,6 @@ namespace WpfEquipmentManager
                 {
                     using (var context = new EmContext())
                     {
-                        EquipmentClass ec = new EquipmentClass
-                        {
-                            Name = Name.Text,
-                            Num = Convert.ToInt32(Num.Text),
-                            Price = Convert.ToDouble(Price.Text),
-                            Type = Type.Text,
-                            Detail = Detail.Text,
-                            Remark = Remark.Text
-                        };
                         List<Equipment> lq = new List<Equipment>();
                         for (int i = 0; i < ec.Num; i++)
                         {
@@ -73,6 +60,7 @@ namespace WpfEquipmentManager
                         context.EquipmentClasses.Add(ec);
                         context.SaveChanges();
                         MessageBox.Show("添加成功");
+                        Close();
                     }
                 }
                 else
