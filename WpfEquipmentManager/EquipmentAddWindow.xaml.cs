@@ -19,36 +19,70 @@ namespace WpfEquipmentManager
     /// </summary>
     public partial class EquipmentAddWindow : Window
     {
-        public EquipmentAddWindow()
+        private int ecid;
+        private EquipmentClass ec;
+        public EquipmentAddWindow(int id=0)
         {
-            InitializeComponent(); 
+            InitializeComponent();
+            this.ecid = id;
+            if (id == 0)
+            {
+                this.Title = "添加设备";
+            }else
+            {
+                this.Title = "编辑设备";
+                using(var context=new EmContext())
+                {
+                    var ecs = from a in context.EquipmentClasses
+                             where a.Id == ecid
+                             select a;
+                    this.ec = ecs.First();
+                    Name.Text = ec.Name;
+                    Num.Text = ec.Num.ToString();
+                    Price.Text = ec.Price.ToString();
+                    Type.Text = ec.Type;
+                    Detail.Text = ec.Detail;
+                    Remark.Text = ec.Remark;
+                }
+            }
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             try
             {
-                using (var context = new EmContext())
+                if (ecid == 0)
                 {
-                    EquipmentClass ec = new EquipmentClass
+                    using (var context = new EmContext())
                     {
-                        Name = Name.Text,
-                        Num = Convert.ToInt32(Num.Text),
-                        Price = Convert.ToDouble(Price.Text),
-                        Type = Type.Text,
-                        Detail = Detail.Text,
-                        Remark = Remark.Text
-                    };
-                    List<Equipment> lq = new List<Equipment>();
-                    for(int i = 0; i < ec.Num; i++)
-                    {
-                        lq.Add(new Equipment());
+                        EquipmentClass ec = new EquipmentClass
+                        {
+                            Name = Name.Text,
+                            Num = Convert.ToInt32(Num.Text),
+                            Price = Convert.ToDouble(Price.Text),
+                            Type = Type.Text,
+                            Detail = Detail.Text,
+                            Remark = Remark.Text
+                        };
+                        List<Equipment> lq = new List<Equipment>();
+                        for (int i = 0; i < ec.Num; i++)
+                        {
+                            lq.Add(new Equipment());
+                        }
+                        ec.Equipments = lq;
+                        context.EquipmentClasses.Add(ec);
+                        context.SaveChanges();
+                        MessageBox.Show("添加成功");
                     }
-                    ec.Equipments = lq;
-                    context.EquipmentClasses.Add(ec);
-                    context.SaveChanges();
-                    MessageBox.Show("添加成功");
                 }
+                else
+                {
+                    using(var context=new EmContext())
+                    {
+
+                    }
+                }
+                
             }
             catch (Exception ex)
             {

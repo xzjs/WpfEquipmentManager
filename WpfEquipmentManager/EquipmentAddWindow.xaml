@@ -7,7 +7,7 @@
         xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
         mc:Ignorable="d"
         Title="EquipmentAddWindow" Height="600" Width="800">
-    <Grid>
+    <Grid x:Name="EquipmentClassDetail" >
         <DockPanel>
             <StackPanel DockPanel.Dock="Bottom">
                 <Button Width="140" Height="40" Margin="0,20" Background="#FF169BD5" Foreground="White" Click="Button_Click">确认</Button>
@@ -15,18 +15,18 @@
             <StackPanel HorizontalAlignment="Center" Margin="0,70,0,0">
                 <StackPanel Orientation="Horizontal" Margin="0,5" >
                     <TextBlock Text="设备名称:" VerticalAlignment="Center" Margin="5,0" Width="51" TextAlignment="Right"/>
-                    <TextBox x:Name="Name" Width="320" Height="30" Margin="5,0"></TextBox>
+                    <TextBox x:Name="Name" Width="320" Height="30" Margin="5,0" Text="{Binding Path=Name}"></TextBox>
                 </StackPanel>
                 <StackPanel Orientation="Horizontal" Margin="0,5">
                     <TextBlock Text="数量:" VerticalAlignment="Center" Margin="5,0" Width="51" TextAlignment="Right"/>
-                    <TextBox x:Name="Num" Width="320" Height="30" Margin="5,0"></TextBox>
+                    <TextBox x:Name="Num" Width="320" Height="30" Margin="5,0" Text="{Binding Path=Num}"></TextBox>
                     <!--<xctk:ValueRangeTextBox Width="320" Height="30" Margin="5,0"></xctk:ValueRangeTextBox>-->
                 </StackPanel>
                 <StackPanel Orientation="Horizontal" Margin="0,5">
                     <TextBlock Text="计价规则:" VerticalAlignment="Center" Margin="5,0" Width="51" TextAlignment="Right"/>
-                    <TextBox x:Name="Price" Width="70" Height="30" Margin="5,0"></TextBox>
+                    <TextBox x:Name="Price" Width="70" Height="30" Margin="5,0" Text="{Binding Path=Price}"></TextBox>
                     <TextBlock VerticalAlignment="Center" Margin="5,0">元</TextBlock>
-                    <ComboBox x:Name="Type" SelectedIndex="0" VerticalAlignment="Center" Margin="5,0">
+                    <ComboBox x:Name="Type" SelectedIndex="{Binding Path=Type}" VerticalAlignment="Center" Margin="5,0">
                         <ComboBoxItem Content="小时"/>
                         <ComboBoxItem>半小时</ComboBoxItem>
                     </ComboBox>
@@ -34,14 +34,14 @@
                 <StackPanel Orientation="Horizontal" Margin="0,5" >
                     <TextBlock Width="51" VerticalAlignment="Center" Margin="5,0"/>
                     <!--<TextBox Width="320" Height="30" Margin="5,0"></TextBox>-->
-                    <ComboBox x:Name="Detail" Width="320" Margin="0,5" SelectedIndex="0">
+                    <ComboBox x:Name="Detail" Width="320" Margin="0,5" SelectedIndex="{Binding Path=Detail}">
                         <ComboBoxItem>向上取整</ComboBoxItem>
                         <ComboBoxItem>精确计算</ComboBoxItem>
                     </ComboBox>
                 </StackPanel>
                 <StackPanel Orientation="Horizontal" Margin="0,5" HorizontalAlignment="Center">
                     <TextBlock Width="51" Text="备注:" VerticalAlignment="Center" Margin="5,0" TextAlignment="Right"/>
-                    <TextBox x:Name="Remark" Width="320" Height="30" Margin="5,0"></TextBox>
+                    <TextBox x:Name="Remark" Width="320" Height="30" Margin="5,0" Text="{Binding Path=Remark}"></TextBox>
                 </StackPanel>
             </StackPanel>
         </DockPanel>

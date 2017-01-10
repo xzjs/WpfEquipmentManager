@@ -21,17 +21,21 @@
                 </StackPanel>
             </DockPanel>
             <Grid>
-                <DataGrid>
+                <DataGrid x:Name="DataGrid1" IsReadOnly="True" AutoGenerateColumns="False">
                     <DataGrid.Columns>
-                        <DataGridTextColumn Header="设备名称" Width="*"></DataGridTextColumn>
-                        <DataGridTextColumn Header="数量" Width="*"></DataGridTextColumn>
-                        <DataGridTextColumn Header="计价规则" Width="*"></DataGridTextColumn>
+                        <DataGridTextColumn Header="设备名称" Width="*" Binding="{Binding Name}" FontSize="20"></DataGridTextColumn>
+                        <DataGridTextColumn Header="数量" Width="*" Binding="{Binding Num}" FontSize="20"></DataGridTextColumn>
+                        <DataGridTextColumn Header="计价规则" Width="*" Binding="{Binding Price}" FontSize="20"></DataGridTextColumn>
                         <DataGridTemplateColumn Header="操作" Width="*">
                             <DataGridTemplateColumn.CellTemplate>
                                 <DataTemplate>
-                                    <StackPanel>
-                                        <Button></Button>
-                                        <Button></Button>
+                                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                                        <Button Width="40" Height="40" BorderBrush="Transparent" Background="Transparent" >
+                                            <Image Source="img/delete.png"></Image>
+                                        </Button>
+                                        <Button Width="40" Height="40" BorderBrush="Transparent" Background="Transparent" Tag="{Binding Id}" Click="Button_Click_1">
+                                            <Image Source="img/edit.png"></Image>
+                                        </Button>
                                     </StackPanel>
                                 </DataTemplate>
                             </DataGridTemplateColumn.CellTemplate>

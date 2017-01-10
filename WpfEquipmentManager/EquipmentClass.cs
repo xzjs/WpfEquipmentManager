@@ -12,8 +12,8 @@ namespace WpfEquipmentManager
         public string Name { get; set; }
         public int Num { get; set; }
         public double Price { get; set; }
-        public string Type { get; set; }
-        public string Detail { get; set; }
+        public int Type { get; set; }
+        public int Detail { get; set; }
         public string Remark { get; set; }
         public EquipmentClass()
         {
