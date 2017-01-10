@@ -21,7 +21,39 @@ namespace WpfEquipmentManager
     {
         public EquipmentAddWindow()
         {
-            InitializeComponent();
+            InitializeComponent(); 
         }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                using (var context = new EmContext())
+                {
+                    EquipmentClass ec = new EquipmentClass
+                    {
+                        Name = Name.Text,
+                        Num = Convert.ToInt32(Num.Text),
+                        Price = Convert.ToDouble(Price.Text),
+                        Type = Type.Text,
+                        Detail = Detail.Text,
+                        Remark = Remark.Text
+                    };
+                    List<Equipment> lq = new List<Equipment>();
+                    for(int i = 0; i < ec.Num; i++)
+                    {
+                        lq.Add(new Equipment());
+                    }
+                    ec.Equipments = lq;
+                    context.EquipmentClasses.Add(ec);
+                    context.SaveChanges();
+                    MessageBox.Show("添加成功");
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }     
     }
 }
