@@ -11,7 +11,7 @@
             <DockPanel DockPanel.Dock="Top" Background="#FFD7D7D7">
                 <StackPanel DockPanel.Dock="Right" Orientation="Horizontal">
                     <Button FontSize="20" Width="130">用户管理</Button>
-                    <Button FontSize="20" Width="130">设备管理</Button>
+                    <Button FontSize="20" Width="130" Click="Button_Click">设备管理</Button>
                     <Button FontSize="20" Width="130">账务管理</Button>
                     <Button FontSize="20" Width="130">系统设置</Button>
                 </StackPanel>
@@ -27,7 +27,7 @@
                     <Button Width="40" Height="40" Background="White" BorderBrush="Transparent" FontSize="20">还</Button>
                 </Border>
             </StackPanel>
-            <Frame x:Name="PageFrame"></Frame>
+            <Frame x:Name="PageFrame" NavigationUIVisibility="Hidden"></Frame>
         </DockPanel>
     </Grid>
 </Window>

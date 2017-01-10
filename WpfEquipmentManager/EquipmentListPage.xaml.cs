@@ -16,19 +16,20 @@ using System.Windows.Shapes;
 namespace WpfEquipmentManager
 {
     /// <summary>
-    /// MainWindow.xaml 的交互逻辑
+    /// EquipmentListPage.xaml 的交互逻辑
     /// </summary>
-    public partial class MainWindow : Window
+    public partial class EquipmentListPage : Page
     {
-        public MainWindow()
+        public EquipmentListPage()
         {
             InitializeComponent();
-            PageFrame.Content = new MainPage();
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            PageFrame.Content = new EquipmentListPage();
+            EquipmentAddWindow eaw = new EquipmentAddWindow();
+            eaw.Title = "添加设备";
+            eaw.ShowDialog();
         }
     }
 }

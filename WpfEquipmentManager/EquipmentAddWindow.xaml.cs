@@ -10,25 +10,18 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
 using System.Windows.Shapes;
 
 namespace WpfEquipmentManager
 {
     /// <summary>
-    /// MainWindow.xaml 的交互逻辑
+    /// EquipmentAddWindow.xaml 的交互逻辑
     /// </summary>
-    public partial class MainWindow : Window
+    public partial class EquipmentAddWindow : Window
     {
-        public MainWindow()
+        public EquipmentAddWindow()
         {
             InitializeComponent();
-            PageFrame.Content = new MainPage();
-        }
-
-        private void Button_Click(object sender, RoutedEventArgs e)
-        {
-            PageFrame.Content = new EquipmentListPage();
         }
     }
 }

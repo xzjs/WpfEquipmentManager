@@ -1,0 +1,47 @@
+﻿<Window x:Class="WpfEquipmentManager.EquipmentAddWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:WpfEquipmentManager"
+        mc:Ignorable="d"
+        Title="EquipmentAddWindow" Height="600" Width="800">
+    <Grid>
+        <DockPanel>
+            <StackPanel DockPanel.Dock="Bottom">
+                <Button Width="140" Height="40" Margin="0,20" Background="#FF169BD5" Foreground="White">确认</Button>
+            </StackPanel>
+            <StackPanel HorizontalAlignment="Center" Margin="0,70,0,0">
+                <StackPanel Orientation="Horizontal" Margin="0,5" >
+                    <TextBlock Text="设备名称:" VerticalAlignment="Center" Margin="5,0" Width="51" TextAlignment="Right"/>
+                    <TextBox Width="320" Height="30" Margin="5,0"></TextBox>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal" Margin="0,5">
+                    <TextBlock Text="数量:" VerticalAlignment="Center" Margin="5,0" Width="51" TextAlignment="Right"/>
+                    <TextBox Width="320" Height="30" Margin="5,0"></TextBox>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal" Margin="0,5">
+                    <TextBlock Text="计价规则:" VerticalAlignment="Center" Margin="5,0" Width="51" TextAlignment="Right"/>
+                    <TextBox Width="70" Height="30" Margin="5,0"></TextBox>
+                    <TextBlock VerticalAlignment="Center" Margin="5,0">元</TextBlock>
+                    <ComboBox SelectedIndex="0" VerticalAlignment="Center" Margin="5,0">
+                        <ComboBoxItem Content="小时"/>
+                        <ComboBoxItem>半小时</ComboBoxItem>
+                    </ComboBox>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal" Margin="0,5" >
+                    <TextBlock Width="51" VerticalAlignment="Center" Margin="5,0"/>
+                    <!--<TextBox Width="320" Height="30" Margin="5,0"></TextBox>-->
+                    <ComboBox Width="320" Margin="0,5" SelectedIndex="0">
+                        <ComboBoxItem>向上取整</ComboBoxItem>
+                        <ComboBoxItem>精确计算</ComboBoxItem>
+                    </ComboBox>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal" Margin="0,5" HorizontalAlignment="Center">
+                    <TextBlock Width="51" Text="备注:" VerticalAlignment="Center" Margin="5,0" TextAlignment="Right"/>
+                    <TextBox Width="320" Height="30" Margin="5,0"></TextBox>
+                </StackPanel>
+            </StackPanel>
+        </DockPanel>
+    </Grid>
+</Window>
