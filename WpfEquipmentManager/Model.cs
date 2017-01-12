@@ -35,19 +35,23 @@ namespace WpfEquipmentManager
         public virtual Equipment Equipment { get; set; }
     }
 
-    public class EquipListItem
+    public class MyListItem
     {
-        public Equipment Equipment { get; set; }
         public int Remain { get; set; }
         public int Num { get; set; }
     }
 
-    public class ReturnListItem
+    public class EquipListItem:MyListItem
     {
-        public DateTime dateTime;
-        public int time;
-        public string name;
-        public List<int> returnNums;
-        public double money;
+        public Equipment Equipment { get; set; }
+    }
+
+    public class ReturnListItem:MyListItem
+    {
+        public bool isReturn { get; set; }
+        public DateTime dateTime { get; set; }
+        public int time { get; set; }
+        public string name { get; set; }
+        public double money { get; set; }
     }
 }

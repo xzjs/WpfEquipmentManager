@@ -14,7 +14,7 @@
                 <Button Width="140" Height="50" Background="#FF169BD5" Margin="20,0" FontSize="20" Foreground="White" Click="Button_Click">搜索</Button>
             </StackPanel>
             <StackPanel DockPanel.Dock="Bottom">
-                <Button Width="140" Height="40" Background="#FF169BD5" Foreground="White" FontSize="20" Margin="0,20">确认</Button>
+                <Button x:Name="SubmitButton" Width="140" Height="40" Background="#FF169BD5" Foreground="White" FontSize="20" Margin="0,20">确认</Button>
             </StackPanel>
             <DockPanel>
                 <StackPanel DockPanel.Dock="Bottom" Orientation="Horizontal">
@@ -22,14 +22,18 @@
                     <TextBlock Foreground="Red">66</TextBlock>
                     <TextBlock Foreground="Red">元</TextBlock>
                 </StackPanel>
-                <DataGrid>
+                <DataGrid Validation.Error="ReturnListDataGrid_Error"  x:Name="ReturnListDataGrid" AutoGenerateColumns="False" ItemsSource="{Binding}" CanUserAddRows="False" CanUserDeleteRows="False">
+                    <DataGrid.RowValidationRules>
+                        <local:ReturnListNumRule ValidationStep="UpdatedValue"></local:ReturnListNumRule>
+                    </DataGrid.RowValidationRules>
                     <DataGrid.Columns>
-                        <DataGridCheckBoxColumn></DataGridCheckBoxColumn>
-                        <DataGridTextColumn Header="借出时间"  Width="*"/>
-                        <DataGridTextColumn Header="使用时长" Width="*" />
-                        <DataGridHyperlinkColumn Header="所借设备" Width="*"   />
-                        <DataGridCheckBoxColumn Header="归还数量" Width="*" />
-                        <DataGridComboBoxColumn Header="金额" Width="*"/>
+                        <DataGridCheckBoxColumn Binding="{Binding isReturn}"></DataGridCheckBoxColumn>
+                        <DataGridTextColumn IsReadOnly="True" Header="借出时间"  Width="*" Binding="{Binding dateTime}"/>
+                        <DataGridTextColumn IsReadOnly="True" Header="使用时长" Width="*"  Binding="{Binding time}"/>
+                        <DataGridTextColumn IsReadOnly="True" Header="所借设备" Width="*" Binding="{Binding name}"/>
+                        <DataGridTextColumn Header="租赁数量" Width="*" IsReadOnly="True" Binding="{Binding Remain}"/>
+                        <DataGridTextColumn Header="归还数量" Width="*" Binding="{Binding Num}"/>
+                        <DataGridTextColumn IsReadOnly="True" Header="金额" Width="*" Binding="{Binding money}"/>
                     </DataGrid.Columns>
                 </DataGrid>
             </DockPanel>

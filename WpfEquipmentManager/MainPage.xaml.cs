@@ -30,5 +30,11 @@ namespace WpfEquipmentManager
             LeaseWindow lw = new LeaseWindow();
             lw.ShowDialog();
         }
+
+        private void Button_Click_1(object sender, RoutedEventArgs e)
+        {
+            ReturnWindow rw = new ReturnWindow();
+            rw.ShowDialog();
+        }
     }
 }
