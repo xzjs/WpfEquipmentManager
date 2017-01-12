@@ -48,6 +48,7 @@
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Data" />
+    <Reference Include="System.Data.Entity" />
     <Reference Include="System.Data.SQLite, Version=1.0.104.0, Culture=neutral, PublicKeyToken=db937bc2d44ff139, processorArchitecture=MSIL">
       <HintPath>..\packages\System.Data.SQLite.Core.1.0.104.0\lib\net451\System.Data.SQLite.dll</HintPath>
       <Private>True</Private>
@@ -102,6 +103,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="ValidationRules.cs" />
     <Page Include="EquipmentAddWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -127,11 +129,10 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="EMContext.cs" />
-    <Compile Include="Equipment.cs" />
     <Compile Include="EquipmentAddWindow.xaml.cs">
       <DependentUpon>EquipmentAddWindow.xaml</DependentUpon>
     </Compile>
-    <Compile Include="EquipmentClass.cs" />
+    <Compile Include="Model.cs" />
     <Compile Include="EquipmentListPage.xaml.cs">
       <DependentUpon>EquipmentListPage.xaml</DependentUpon>
     </Compile>

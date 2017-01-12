@@ -9,7 +9,6 @@ namespace WpfEquipmentManager
 {
     class EmContext:DbContext
     {
-        public DbSet<EquipmentClass> EquipmentClasses { get; set; }
         public DbSet<Equipment> Equipments { get; set; }
     }
 }

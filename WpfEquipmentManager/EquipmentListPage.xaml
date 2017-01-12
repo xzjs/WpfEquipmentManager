@@ -30,10 +30,10 @@
                             <DataGridTemplateColumn.CellTemplate>
                                 <DataTemplate>
                                     <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
-                                        <Button Width="40" Height="40" BorderBrush="Transparent" Background="Transparent" >
+                                        <Button Width="40" Height="40" BorderBrush="Transparent" Background="Transparent" Tag="{Binding ElementName=DataGrid1,Path=SelectedItem}" Click="Button_Click_2">
                                             <Image Source="img/delete.png"></Image>
                                         </Button>
-                                        <Button Width="40" Height="40" BorderBrush="Transparent" Background="Transparent" Tag="{Binding Id}" Click="Button_Click_1">
+                                        <Button Width="40" Height="40" BorderBrush="Transparent" Background="Transparent" Tag="{Binding ElementName=DataGrid1,Path=SelectedItem}" Click="Button_Click_1">
                                             <Image Source="img/edit.png"></Image>
                                         </Button>
                                     </StackPanel>

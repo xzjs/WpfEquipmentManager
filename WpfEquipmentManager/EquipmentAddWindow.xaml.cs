@@ -11,6 +11,8 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using System.Data.Entity;
+using System.Collections.ObjectModel;
 
 namespace WpfEquipmentManager
 {
@@ -19,27 +21,15 @@ namespace WpfEquipmentManager
     /// </summary>
     public partial class EquipmentAddWindow : Window
     {
-        private int ecid;
-        private EquipmentClass ec;
-        public EquipmentAddWindow(int id=0)
+        private Equipment ec;
+        private int num;
+        public ObservableCollection<Equipment> ocec { get; set; }
+
+        public EquipmentAddWindow(Equipment _ec)
         {
             InitializeComponent();
-            this.ecid = id;
-            if (id == 0)
-            {
-                Title = "添加设备";
-                ec = new EquipmentClass();
-            }else
-            {
-                Title = "编辑设备";
-                using(var context=new EmContext())
-                {
-                    var ecs = from a in context.EquipmentClasses
-                             where a.Id == ecid
-                             select a;
-                    ec = ecs.First();
-                }
-            }
+            ec = _ec;
+            num = _ec.Num;
             EquipmentClassDetail.DataContext = ec;
         }
 
@@ -47,30 +37,23 @@ namespace WpfEquipmentManager
         {
             try
             {
-                if (ecid == 0)
+                using (var context = new EmContext())
                 {
-                    using (var context = new EmContext())
+                    if (ec.Id == 0)
                     {
-                        List<Equipment> lq = new List<Equipment>();
-                        for (int i = 0; i < ec.Num; i++)
-                        {
-                            lq.Add(new Equipment());
-                        }
-                        ec.Equipments = lq;
-                        context.EquipmentClasses.Add(ec);
+                        context.Equipments.Add(ec);
                         context.SaveChanges();
-                        MessageBox.Show("添加成功");
-                        Close();
+                        ocec.Add(ec);
                     }
-                }
-                else
-                {
-                    using(var context=new EmContext())
+                    else
                     {
 
+                        context.Entry(ec).State = EntityState.Modified;
+                        context.SaveChanges();
                     }
                 }
-                
+                MessageBox.Show("操作成功");
+                Close();
             }
             catch (Exception ex)
             {
