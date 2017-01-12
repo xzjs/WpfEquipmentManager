@@ -27,9 +27,10 @@ namespace WpfEquipmentManager
         public string Start { get; set; }
         public string End { get; set; }
         public long EquipmentId { get; set; } 
-        public int Num { get; set; }
+        public int LendNum { get; set; }
         public int Finish { get; set; }
         public double Total { get; set; }
+        public int ReturnNum { get; set; }
 
         public virtual Equipment Equipment { get; set; }
     }
@@ -39,5 +40,14 @@ namespace WpfEquipmentManager
         public Equipment Equipment { get; set; }
         public int Remain { get; set; }
         public int Num { get; set; }
+    }
+
+    public class ReturnListItem
+    {
+        public DateTime dateTime;
+        public int time;
+        public string name;
+        public List<int> returnNums;
+        public double money;
     }
 }

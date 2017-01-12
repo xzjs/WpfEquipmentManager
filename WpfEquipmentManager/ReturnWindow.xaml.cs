@@ -23,5 +23,22 @@ namespace WpfEquipmentManager
         {
             InitializeComponent();
         }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            using (var context=new EmContext())
+            {
+                List<Record> lrs;
+                int phone;
+                string card = CardPhoneTextBox.Text.Trim();
+                if(int.TryParse(card,out phone))
+                {
+                    lrs = context.Records.Where(m => m.Phone == phone).ToList();
+                }else
+                {
+                    lrs = context.Records.Where(m => m.Card == card).ToList();
+                }
+            }
+        }
     }
 }

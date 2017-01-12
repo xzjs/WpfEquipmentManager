@@ -55,7 +55,8 @@ namespace WpfEquipmentManager
                             Phone = Convert.ToInt32(PhoneTextBox.Text),
                             Start = DateTime.Now.ToString(),
                             EquipmentId=item.Equipment.Id,
-                            Num = item.Num,
+                            LendNum = item.Num,
+                            ReturnNum=0,
                             Finish = 0,
                             Total = 0
                         });
