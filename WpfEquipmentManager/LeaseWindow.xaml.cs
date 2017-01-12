@@ -28,10 +28,10 @@ namespace WpfEquipmentManager
             using(var context=new EmContext())
             {
                 List<Equipment> les = context.Equipments.ToList();
-                
-                foreach(var item in les)
+
+                foreach (var item in les)
                 {
-                    lelis.Add(new EquipListItem { Name = item.Name, Remain = item.Num, Num = 0 });
+                    lelis.Add(new EquipListItem { Equipment = item, Num = 0, Remain = item.Num });
                 }
                 DataGrid1.ItemsSource = lelis;
             }
@@ -39,39 +39,54 @@ namespace WpfEquipmentManager
             TimeTextBox.Text = DateTime.Now.ToString();
         }
 
-        private void Button_Click(object sender, RoutedEventArgs e)
-        {
-            Button b = sender as Button;
-            EquipListItem eli = b.Tag as EquipListItem;
-            if (b.Content.ToString() == "+")
-            {
-                eli.Num++;
-                if (eli.Num > eli.Remain)
-                {
-                    eli.Num--;
-                    MessageBox.Show("设备数量不足");
-                }
-            }
-            else
-            {
-                if (eli.Num == 0)
-                {
-                    return;
-                }
-                eli.Num--;
-            }
-        }
-
         private void Button_Click_1(object sender, RoutedEventArgs e)
         {
-            List<Record> lrs = new List<Record>();
-            foreach(var item in lelis)
+            try
             {
-                if (item.Num > 0)
+                List<Record> lrs = new List<Record>();
+                foreach (var item in lelis)
                 {
-
+                    if (item.Num > 0)
+                    {
+                        lrs.Add(new Record
+                        {
+                            Name = NameTextBox.Text,
+                            Card = CardTextBox.Text,
+                            Phone = Convert.ToInt32(PhoneTextBox.Text),
+                            Start = DateTime.Now.ToString(),
+                            EquipmentId=item.Equipment.Id,
+                            Num = item.Num,
+                            Finish = 0,
+                            Total = 0
+                        });
+                    }
+                }
+                if (lrs.Count > 0)
+                {
+                    using (var context = new EmContext())
+                    {
+                        context.Records.AddRange(lrs);
+                        context.SaveChanges();
+                        foreach(var item in lelis)
+                        {
+                            Equipment eq= context.Equipments.First(m => m.Id == item.Equipment.Id);
+                            eq.Num -= item.Num;
+                            context.SaveChanges();
+                        }
+                    }
+                    MessageBox.Show("租赁成功");
+                    Close();
+                }
+                else
+                {
+                    throw new Exception("请选择租赁设备");
                 }
             }
+            catch(Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+            
         }
 
         private void NumTextBox_LostFocus(object sender, RoutedEventArgs e)

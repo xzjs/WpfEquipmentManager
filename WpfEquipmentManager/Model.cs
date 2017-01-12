@@ -15,6 +15,7 @@ namespace WpfEquipmentManager
         public long Type { get; set; }
         public long Detail { get; set; }
         public string Remark { get; set; }
+        public virtual List<Record> Records { get; set; }
     }
 
     public class Record
@@ -25,7 +26,7 @@ namespace WpfEquipmentManager
         public string Card { get; set; }
         public string Start { get; set; }
         public string End { get; set; }
-        public long Equipment_id { get; set; } 
+        public long EquipmentId { get; set; } 
         public int Num { get; set; }
         public int Finish { get; set; }
         public double Total { get; set; }
@@ -35,7 +36,7 @@ namespace WpfEquipmentManager
 
     public class EquipListItem
     {
-        public string Name { get; set; }
+        public Equipment Equipment { get; set; }
         public int Remain { get; set; }
         public int Num { get; set; }
     }
