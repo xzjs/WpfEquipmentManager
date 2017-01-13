@@ -13,21 +13,28 @@ namespace WpfEquipmentManager
     {
         public override ValidationResult Validate(object value, CultureInfo cultureInfo)
         {
-            BindingGroup bindingGroup = (BindingGroup)value;
-            MyListItem eli = (MyListItem)bindingGroup.Items[0];
-            int reamin = Convert.ToInt32(bindingGroup.GetValue(eli, "Remain"));
-            int num = Convert.ToInt32(bindingGroup.GetValue(eli, "Num"));
-            if (num < 0)
+            try
             {
-                return new ValidationResult(false, "输入的数字不合法");
+                BindingGroup bindingGroup = (BindingGroup)value;
+                MyListItem eli = (MyListItem)bindingGroup.Items[0];
+                int reamin = Convert.ToInt32(bindingGroup.GetValue(eli, "Remain"));
+                int num = Convert.ToInt32(bindingGroup.GetValue(eli, "Num"));
+                if (num < 0)
+                {
+                    return new ValidationResult(false, "输入的数字不合法");
+                }
+                if (num > reamin)
+                {
+                    return new ValidationResult(false, "租赁数量超过剩余数量");
+                }
+                else
+                {
+                    return new ValidationResult(true, null);
+                }
             }
-            if (num > reamin)
+            catch(Exception ex)
             {
-                return new ValidationResult(false, "租赁数量超过剩余数量");
-            }
-            else
-            {
-                return new ValidationResult(true, null);
+                return new ValidationResult(false, ex.Message);
             }
         }
     }
