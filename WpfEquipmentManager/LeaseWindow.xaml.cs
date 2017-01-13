@@ -53,7 +53,7 @@ namespace WpfEquipmentManager
                             Name = NameTextBox.Text,
                             Card = CardTextBox.Text,
                             Phone = Convert.ToInt32(PhoneTextBox.Text),
-                            Start = DateTime.Now.ToString(),
+                            Start = DateTime.Now,
                             EquipmentId=item.Equipment.Id,
                             LendNum = item.Num,
                             ReturnNum=0,

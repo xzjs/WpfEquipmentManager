@@ -1,0 +1,40 @@
+﻿<Page x:Class="WpfEquipmentManager.AccountPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:WpfEquipmentManager"
+      mc:Ignorable="d" 
+      d:DesignHeight="300" d:DesignWidth="810.571"
+      Title="AccountPage">
+
+    <Grid>
+        <DockPanel>
+            <DockPanel DockPanel.Dock="Top">
+                <StackPanel DockPanel.Dock="Right" Orientation="Horizontal" VerticalAlignment="Center">
+                    <TextBlock VerticalAlignment="Center">开始时间：</TextBlock>
+                    <DatePicker x:Name="StartDate"></DatePicker>
+                    <TextBlock VerticalAlignment="Center">结束时间</TextBlock>
+                    <DatePicker x:Name="EndDate"></DatePicker>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal">
+                    <Button x:Name="AllButton" Width="150" Height="50" Foreground="White" Background="#FF3399FF" Click="Button_Click">全部订单</Button>
+                    <Button x:Name="FinishButton" Width="150" Height="50"  Click="Button_Click">已完成订单</Button>
+                    <Button x:Name="UnFinishButton" Width="150" Height="50"  Click="Button_Click">未完成订单</Button>
+                </StackPanel>
+            </DockPanel>
+            <DataGrid x:Name="RecordListDataGrid" AutoGenerateColumns="False" IsReadOnly="True" ItemsSource="{Binding}">
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="单号"  Width="*" Binding="{Binding Id}"/>
+                    <DataGridTextColumn Header="租借时间" Width="*"  Binding="{Binding Start}"/>
+                    <DataGridTextColumn Header="归还时间" Width="*" Binding="{Binding Path=End}"/>
+                    <DataGridTextColumn Header="租借人" Width="*" Binding="{Binding Name}"/>
+                    <DataGridTextColumn Header="手机号" Width="*" Binding="{Binding Phone}"/>
+                    <DataGridTextColumn Header="一卡通号" Width="*" Binding="{Binding Card}"/>
+                    <DataGridTextColumn Header="租借物品" Width="*" Binding="{Binding Path=Equipment.Name}"/>
+                    <DataGridTextColumn Header="金额" Width="*" Binding="{Binding Total}"/>
+                </DataGrid.Columns>
+            </DataGrid>
+        </DockPanel>
+    </Grid>
+</Page>

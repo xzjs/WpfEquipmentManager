@@ -1,9 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Data;
 
 namespace WpfEquipmentManager
 {
@@ -25,8 +27,8 @@ namespace WpfEquipmentManager
         public string Name { get; set; }
         public int Phone { get; set; }
         public string Card { get; set; }
-        public string Start { get; set; }
-        public string End { get; set; }
+        public DateTime Start { get; set; }
+        public DateTime End { get; set; }
         public long EquipmentId { get; set; }
         public int LendNum { get; set; }
         public int Finish { get; set; }
@@ -158,6 +160,23 @@ namespace WpfEquipmentManager
             double total = price * t * Num;
             total = Math.Round(total, 2);
             return total;
+        }
+    }
+
+    public class PriceConverter : IMultiValueConverter
+    {
+        public object Convert(object[] values, Type targetType, object parameter, CultureInfo culture)
+        {
+            string type_num = values[1].ToString();
+            string detail_num = values[2].ToString();
+            string type = type_num == "0" ? "小时" : "半小时";
+            string detail = type_num == "0" ? "向上取整" : "精确到分钟";
+            return values[0]+"元/"+type+"\n"+detail;
+        }
+
+        public object[] ConvertBack(object value, Type[] targetTypes, object parameter, CultureInfo culture)
+        {
+            return ((string)value).Split(' ');
         }
     }
 }

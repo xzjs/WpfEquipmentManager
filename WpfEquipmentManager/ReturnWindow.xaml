@@ -19,6 +19,13 @@
             <DockPanel>
                 <DockPanel >
                     <StackPanel DockPanel.Dock="Right" Width="100" Margin="20,0" DataContext="{Binding ElementName=ReturnListDataGrid,Path=SelectedItem}">
+                        <StackPanel.BindingGroup>
+                            <BindingGroup x:Name="EquipmentListItemBindingGroup">
+                                <BindingGroup.ValidationRules>
+                                    <local:EquipmentNumRule></local:EquipmentNumRule>
+                                </BindingGroup.ValidationRules>
+                            </BindingGroup>
+                        </StackPanel.BindingGroup>
                         <CheckBox Margin="0,20,0,0" IsChecked="{Binding Path=IsReturn}" FontSize="16" Checked="TextBox_LostFocus" Unchecked="TextBox_LostFocus">是否归还</CheckBox>
                         <TextBlock FontSize="16">设备名</TextBlock>
                         <TextBox IsReadOnly="True" Text="{Binding Path=name}"></TextBox>

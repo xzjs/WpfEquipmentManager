@@ -30,5 +30,22 @@ namespace WpfEquipmentManager
         {
             PageFrame.Content = new EquipmentListPage();
         }
+
+        private void Button_Click_1(object sender, RoutedEventArgs e)
+        {
+            PageFrame.Content = new AccountPage();
+        }
+
+        private void Button_Click_2(object sender, RoutedEventArgs e)
+        {
+            LeaseWindow lw = new LeaseWindow();
+            lw.ShowDialog();
+        }
+
+        private void Button_Click_3(object sender, RoutedEventArgs e)
+        {
+            ReturnWindow rw = new ReturnWindow();
+            rw.ShowDialog();
+        }
     }
 }

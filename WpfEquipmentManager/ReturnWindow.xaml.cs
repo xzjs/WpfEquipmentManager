@@ -77,15 +77,12 @@ namespace WpfEquipmentManager
 
         private void TextBox_LostFocus(object sender, RoutedEventArgs e)
         {
-            //Timer t = new Timer(500);
-            //t.Elapsed += UpdateMoney;
-            //t.AutoReset = false;
-            //t.Enabled = true;
-
             DispatcherTimer readDataTimer = new DispatcherTimer();
             readDataTimer.Tick += new EventHandler(UpdateMoney);
             readDataTimer.Interval = new TimeSpan(0,0,1);
             readDataTimer.Start();
+
+            EquipmentListItemBindingGroup.CommitEdit();
         }
 
         private void UpdateMoney(object source,EventArgs e)
@@ -109,6 +106,7 @@ namespace WpfEquipmentManager
             // 将钱数写入
             // 减少没有归还的数量
             // 如果没有归还的数量为0，将finish改为1，写入归还时间
+            // 设备数增加
             using(var context=new EmContext())
             {
                 foreach(var item in lrlis)
@@ -122,8 +120,9 @@ namespace WpfEquipmentManager
                         if (r.LendNum == 0)
                         {
                             r.Finish = 1;
-                            r.End = DateTime.Now.ToString();
+                            r.End = DateTime.Now;
                         }
+                        r.Equipment.Num += item.Num;
                         context.SaveChanges();
                     }
                 }

@@ -7,7 +7,9 @@
       mc:Ignorable="d" 
       d:DesignHeight="300" d:DesignWidth="795.945"
       Title="EquipmentListPage">
-
+    <Page.Resources>
+        <local:PriceConverter x:Key="myPriceConverter"></local:PriceConverter>
+    </Page.Resources>
     <Grid>
         <DockPanel>
             <DockPanel DockPanel.Dock="Top">
@@ -16,16 +18,24 @@
                     <Button Width="140" Height="40" Margin="5">搜索</Button>
                 </StackPanel>
                 <StackPanel Orientation="Horizontal">
-                    <Button Background="#FFDD514C" Foreground="White" Width="100" Height="27" Margin="10">批量删除</Button>
+                    <!--<Button Background="#FFDD514C" Foreground="White" Width="100" Height="27" Margin="10">批量删除</Button>-->
                     <Button Background="#FF5A98DE" Width="100" Height="30" Foreground="White" Margin="10" Click="Button_Click">添加设备</Button>
                 </StackPanel>
             </DockPanel>
             <Grid>
                 <DataGrid x:Name="DataGrid1" IsReadOnly="True" AutoGenerateColumns="False">
                     <DataGrid.Columns>
-                        <DataGridTextColumn Header="设备名称" Width="*" Binding="{Binding Name}" FontSize="20"></DataGridTextColumn>
-                        <DataGridTextColumn Header="数量" Width="*" Binding="{Binding Num}" FontSize="20"></DataGridTextColumn>
-                        <DataGridTextColumn Header="计价规则" Width="*" Binding="{Binding Price}" FontSize="20"></DataGridTextColumn>
+                        <DataGridTextColumn Header="设备名称" Width="*" Binding="{Binding Name}" ></DataGridTextColumn>
+                        <DataGridTextColumn Header="数量" Width="*" Binding="{Binding Num}" ></DataGridTextColumn>
+                        <DataGridTextColumn Header="计价规则" Width="*">
+                            <DataGridTextColumn.Binding>
+                                <MultiBinding Converter="{StaticResource ResourceKey=myPriceConverter}">
+                                    <Binding Path="Price"></Binding>
+                                    <Binding Path="Type"></Binding>
+                                    <Binding Path="Detail"></Binding>
+                                </MultiBinding>
+                            </DataGridTextColumn.Binding>
+                        </DataGridTextColumn>
                         <DataGridTemplateColumn Header="操作" Width="*">
                             <DataGridTemplateColumn.CellTemplate>
                                 <DataTemplate>
