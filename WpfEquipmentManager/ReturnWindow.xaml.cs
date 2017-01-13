@@ -45,6 +45,7 @@ namespace WpfEquipmentManager
                 foreach(var item in lrs)
                 {
                     ReturnListItem rli = new ReturnListItem();
+                    rli.id = item.Id;
                     rli.IsReturn = true;
                     rli.dateTime = Convert.ToDateTime(item.Start);
                     rli.time = Convert.ToInt32((DateTime.Now - rli.dateTime).TotalMinutes);
@@ -52,7 +53,7 @@ namespace WpfEquipmentManager
                     rli.Remain = item.LendNum;
                     rli.Num = item.LendNum;
                     rli.Equipment = item.Equipment;
-                    //TODO 计算钱数
+                    // 计算钱数
                     rli.Money = rli.GetTotal();
                     totalMoney += rli.Money;
                     lrlis.Add(rli);
@@ -61,6 +62,10 @@ namespace WpfEquipmentManager
                 {
                     ReturnListDataGrid.DataContext = lrlis;
                     TotalMoneyTextBlock.Text = totalMoney.ToString();
+                }
+                else
+                {
+                    MessageBox.Show("没有检测到租赁记录");
                 }
             }
         }
@@ -99,11 +104,32 @@ namespace WpfEquipmentManager
 
         private void SubmitButton_Click(object sender, RoutedEventArgs e)
         {
-            //TODO 读取list
-            //TODO 将归还数量写入
-            //TODO 将钱数写入
-            //TODO 减少没有归还的数量
-            //TODO 如果没有归还的数量为0，将finish改为1，写入归还时间
+            // 读取list
+            // 将归还数量写入
+            // 将钱数写入
+            // 减少没有归还的数量
+            // 如果没有归还的数量为0，将finish改为1，写入归还时间
+            using(var context=new EmContext())
+            {
+                foreach(var item in lrlis)
+                {
+                    if(item.IsReturn && item.Num > 0)
+                    {
+                        Record r = context.Records.First(m => m.Id == item.id);
+                        r.ReturnNum += item.Num;
+                        r.LendNum -= item.Num;
+                        r.Total += item.Money;
+                        if (r.LendNum == 0)
+                        {
+                            r.Finish = 1;
+                            r.End = DateTime.Now.ToString();
+                        }
+                        context.SaveChanges();
+                    }
+                }
+            }
+            MessageBox.Show("归还成功");
+            Close();
         }
     }
 }

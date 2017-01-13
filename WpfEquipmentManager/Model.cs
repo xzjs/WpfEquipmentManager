@@ -77,6 +77,7 @@ namespace WpfEquipmentManager
 
     public class ReturnListItem : MyListItem
     {
+        public long id { get; set; }
         private bool isReturn;
         public DateTime dateTime { get; set; }
         public int time { get; set; }
