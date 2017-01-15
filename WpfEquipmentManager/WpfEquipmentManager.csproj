@@ -147,7 +147,9 @@
     <Reference Include="System.Security">
       <Private>True</Private>
     </Reference>
-    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Windows.Forms">
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System.Xml">
       <Private>True</Private>
     </Reference>
