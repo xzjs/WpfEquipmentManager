@@ -29,6 +29,8 @@ namespace WpfEquipmentManager
                 List<Record> lr = context.Records.Include("Equipment").OrderByDescending(m => m.Start).ToList();
                 RecordListDataGrid.ItemsSource = lr;
             }
+            StartDate.SelectedDate = DateTime.Today;
+            EndDate.SelectedDate = DateTime.Today.AddDays(1);
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
@@ -42,12 +44,12 @@ namespace WpfEquipmentManager
             DateTime? endDate = EndDate.SelectedDate;
             if (endDate < startDate)
             {
-                MessageBox.Show("结束日期必须大于开始日期");
+                MessageBox.Show("结束日期必须大于等于开始日期");
                 return;
             }
             using(var context=new EMDBEntities())
             {
-                var records = context.Records.Include("Equipment").Where(m => m.Start > startDate && m.Start < endDate);
+                var records = context.Records.Include("Equipment").Where(m => m.Start >= startDate && m.Start <= endDate);
                 if (b.Content.ToString() != "全部订单")
                 {
                     int flag = 0;
