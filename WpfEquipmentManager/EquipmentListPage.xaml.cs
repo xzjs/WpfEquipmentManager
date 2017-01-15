@@ -19,7 +19,7 @@ namespace WpfEquipmentManager
         {
             InitializeComponent();
 
-            using (var context = new EmContext())
+            using (var context = new EMDBEntities())
             {
                 ecs = new ObservableCollection<Equipment>(context.Equipments.ToList());
 
@@ -49,7 +49,7 @@ namespace WpfEquipmentManager
             MessageBoxResult mbr = MessageBox.Show("是否删除" + ec.Name,"删除",MessageBoxButton.OKCancel,MessageBoxImage.Warning);
             if (mbr == MessageBoxResult.OK)
             {
-                using (var context = new EmContext())
+                using (var context = new EMDBEntities())
                 {
                     context.Entry(ec).State = EntityState.Deleted;
                     context.SaveChanges();

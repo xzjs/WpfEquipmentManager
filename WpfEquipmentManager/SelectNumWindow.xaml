@@ -1,0 +1,21 @@
+﻿<Window x:Class="WpfEquipmentManager.SelectNumWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:WpfEquipmentManager"
+        mc:Ignorable="d"
+        Title="选择数量" Height="126.85" Width="166.173" WindowStartupLocation="CenterScreen" Closing="Window_Closing">
+    <Grid>
+        <StackPanel x:Name="MylistItemStackPanel" DataContext="{Binding}">
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,20">
+                <TextBlock Text="设备名" Margin="10,0" Width="48" TextAlignment="Right"></TextBlock>
+                <TextBlock x:Name="NameTextBox" Text="{Binding Path=Equipment.Name}" Margin="10,0"></TextBlock>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                <TextBlock Text="选择数量" Margin="10,0"></TextBlock>
+                <ComboBox x:Name="NumComboBox" Margin="10,0" SelectedIndex="{Binding Path=Num}"></ComboBox>
+            </StackPanel>
+        </StackPanel>
+    </Grid>
+</Window>

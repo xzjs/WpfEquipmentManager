@@ -21,7 +21,7 @@ namespace WpfEquipmentManager
     /// </summary>
     public partial class ReturnWindow : Window
     {
-        public List<ReturnListItem> lrlis = new List<ReturnListItem>();
+        public List<ReturnListItem> lrlis;
         public ReturnWindow()
         {
             InitializeComponent();
@@ -29,18 +29,18 @@ namespace WpfEquipmentManager
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            using (var context=new EmContext())
+            lrlis = new List<ReturnListItem>();
+            using (var context=new EMDBEntities())
             {
                 List<Record> lrs;
-                int phone;
                 string card = CardPhoneTextBox.Text.Trim();
                 double totalMoney = 0;
-                if(int.TryParse(card,out phone))
+                if (Combobox1.SelectedIndex==1)
                 {
-                    lrs = context.Records.Where(m => m.Phone == phone).Where(m=>m.Finish==0).ToList();
+                    lrs = context.Records.Where(m => m.Card == "NO."+card).Where(m => m.Finish == 0).ToList();
                 }else
                 {
-                    lrs = context.Records.Where(m => m.Card == card).Where(m => m.Finish == 0).ToList();
+                    lrs = context.Records.Where(m => m.Phone == "+86 "+card).Where(m => m.Finish == 0).ToList();
                 }
                 foreach(var item in lrs)
                 {
@@ -70,27 +70,24 @@ namespace WpfEquipmentManager
             }
         }
 
-        private void ReturnListDataGrid_Error(object sender, ValidationErrorEventArgs e)
-        {
-            //TODO:  需要写检测错误验证
-        }
+        //private void TextBox_LostFocus(object sender, RoutedEventArgs e)
+        //{
+        //    DispatcherTimer readDataTimer = new DispatcherTimer();
+        //    readDataTimer.Tick += new EventHandler(UpdateMoney);
+        //    readDataTimer.Interval = new TimeSpan(0,0,1);
+        //    readDataTimer.Start();
+        //}
 
-        private void TextBox_LostFocus(object sender, RoutedEventArgs e)
-        {
-            DispatcherTimer readDataTimer = new DispatcherTimer();
-            readDataTimer.Tick += new EventHandler(UpdateMoney);
-            readDataTimer.Interval = new TimeSpan(0,0,1);
-            readDataTimer.Start();
-
-            EquipmentListItemBindingGroup.CommitEdit();
-        }
-
-        private void UpdateMoney(object source,EventArgs e)
+        public void UpdateMoney()
         {
             double totalMoney = 0;
             for(int i = 0; i < lrlis.Count; i++)
             {
                 lrlis[i].Money = lrlis[i].GetTotal();
+                if (lrlis[i].Num == 0)
+                {
+                    lrlis[i].IsReturn = false;
+                }
                 if (lrlis[i].IsReturn)
                 {
                     totalMoney += lrlis[i].Money;
@@ -107,7 +104,7 @@ namespace WpfEquipmentManager
             // 减少没有归还的数量
             // 如果没有归还的数量为0，将finish改为1，写入归还时间
             // 设备数增加
-            using(var context=new EmContext())
+            using(var context=new EMDBEntities())
             {
                 foreach(var item in lrlis)
                 {
@@ -129,6 +126,13 @@ namespace WpfEquipmentManager
             }
             MessageBox.Show("归还成功");
             Close();
+        }
+
+        private void ReturnListDataGrid_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            SelectNumWindow snw = new SelectNumWindow((sender as DataGrid).SelectedItem as ReturnListItem);
+            snw.rw = this;
+            snw.ShowDialog();
         }
     }
 }

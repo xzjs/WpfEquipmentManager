@@ -19,21 +19,27 @@ namespace WpfEquipmentManager
     /// </summary>
     public partial class LeaseWindow : Window
     {
-        private List<EquipListItem> lelis = new List<EquipListItem>();
+        private List<MyListItem> lelis = new List<MyListItem>();
 
         public LeaseWindow()
         {
             InitializeComponent();
-
-            using(var context=new EmContext())
+            try
             {
-                List<Equipment> les = context.Equipments.ToList();
-
-                foreach (var item in les)
+                using (var context = new EMDBEntities())
                 {
-                    lelis.Add(new EquipListItem { Equipment = item, Num = 0, Remain = item.Num });
+                    List<Equipment> les = context.Equipments.ToList();
+
+                    foreach (var item in les)
+                    {
+                        lelis.Add(new MyListItem { Equipment = item, Num = 0, Remain = item.Num });
+                    }
+                    DataGrid1.ItemsSource = lelis;
                 }
-                DataGrid1.ItemsSource = lelis;
+            }
+            catch(Exception ex)
+            {
+                MessageBox.Show(ex.InnerException.Message);
             }
 
             TimeTextBox.Text = DateTime.Now.ToString();
@@ -51,12 +57,12 @@ namespace WpfEquipmentManager
                         lrs.Add(new Record
                         {
                             Name = NameTextBox.Text,
-                            Card = CardTextBox.Text,
-                            Phone = Convert.ToInt32(PhoneTextBox.Text),
+                            Card = "NO."+CardTextBox.Text,
+                            Phone = "+86 " + PhoneTextBox.Text,
                             Start = DateTime.Now,
-                            EquipmentId=item.Equipment.Id,
+                            EquipmentId = item.Equipment.Id,
                             LendNum = item.Num,
-                            ReturnNum=0,
+                            ReturnNum = 0,
                             Finish = 0,
                             Total = 0
                         });
@@ -64,13 +70,13 @@ namespace WpfEquipmentManager
                 }
                 if (lrs.Count > 0)
                 {
-                    using (var context = new EmContext())
+                    using (var context = new EMDBEntities())
                     {
                         context.Records.AddRange(lrs);
                         context.SaveChanges();
                         foreach(var item in lelis)
                         {
-                            Equipment eq= context.Equipments.First(m => m.Id == item.Equipment.Id);
+                            Equipment eq = context.Equipments.First(m => m.Id == item.Equipment.Id);
                             eq.Num -= item.Num;
                             context.SaveChanges();
                         }
@@ -90,9 +96,10 @@ namespace WpfEquipmentManager
             
         }
 
-        private void NumTextBox_LostFocus(object sender, RoutedEventArgs e)
+        private void DataGrid1_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            EquipmentListItemBindingGroup.CommitEdit();
+            SelectNumWindow snw = new SelectNumWindow(((sender as DataGrid).SelectedItem as MyListItem));
+            snw.ShowDialog();
         }
     }
 }

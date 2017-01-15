@@ -5,11 +5,14 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WpfEquipmentManager"
         mc:Ignorable="d"
-        Title="设备归还" Height="650" Width="950">
+        Title="设备归还" Height="650" Width="950" WindowStartupLocation="CenterScreen">
     <Grid>
         <DockPanel>
             <StackPanel DockPanel.Dock="Top" Orientation="Horizontal">
-                <TextBlock Margin="20" FontSize="20">手机号或一卡通号：</TextBlock>
+                <ComboBox x:Name="Combobox1" SelectedIndex="0" FontSize="24" VerticalAlignment="Center" Margin="20,0">
+                    <ComboBoxItem Content="手机号"/>
+                    <ComboBoxItem Content="一卡通"/>
+                </ComboBox>
                 <TextBox x:Name="CardPhoneTextBox" Width="300" Height="30" Margin="20,0"></TextBox>
                 <Button Width="140" Height="50" Background="#FF169BD5" Margin="20,0" FontSize="20" Foreground="White" Click="Button_Click">搜索</Button>
             </StackPanel>
@@ -17,41 +20,23 @@
                 <Button x:Name="SubmitButton" Width="140" Height="40" Background="#FF169BD5" Foreground="White" FontSize="20" Margin="0,20" Click="SubmitButton_Click">确认</Button>
             </StackPanel>
             <DockPanel>
-                <DockPanel >
-                    <StackPanel DockPanel.Dock="Right" Width="100" Margin="20,0" DataContext="{Binding ElementName=ReturnListDataGrid,Path=SelectedItem}">
-                        <StackPanel.BindingGroup>
-                            <BindingGroup x:Name="EquipmentListItemBindingGroup">
-                                <BindingGroup.ValidationRules>
-                                    <local:EquipmentNumRule></local:EquipmentNumRule>
-                                </BindingGroup.ValidationRules>
-                            </BindingGroup>
-                        </StackPanel.BindingGroup>
-                        <CheckBox Margin="0,20,0,0" IsChecked="{Binding Path=IsReturn}" FontSize="16" Checked="TextBox_LostFocus" Unchecked="TextBox_LostFocus">是否归还</CheckBox>
-                        <TextBlock FontSize="16">设备名</TextBlock>
-                        <TextBox IsReadOnly="True" Text="{Binding Path=name}"></TextBox>
-                        <TextBlock FontSize="16">租赁数量</TextBlock>
-                        <TextBox IsReadOnly="True" Text="{Binding Path=Remain}"></TextBox>
-                        <TextBlock FontSize="16" >归还数量</TextBlock>
-                        <TextBox Text="{Binding Path=Num}" LostFocus="TextBox_LostFocus"></TextBox>
+                <DockPanel>
+                    <StackPanel DockPanel.Dock="Bottom" Orientation="Horizontal" HorizontalAlignment="Center">
+                        <TextBlock Foreground="Red">小计：</TextBlock>
+                        <TextBlock x:Name="TotalMoneyTextBlock" Foreground="Red">66</TextBlock>
+                        <TextBlock Foreground="Red">元</TextBlock>
                     </StackPanel>
-                    <DockPanel>
-                        <StackPanel DockPanel.Dock="Bottom" Orientation="Horizontal" HorizontalAlignment="Center">
-                            <TextBlock Foreground="Red">小计：</TextBlock>
-                            <TextBlock x:Name="TotalMoneyTextBlock" Foreground="Red">66</TextBlock>
-                            <TextBlock Foreground="Red">元</TextBlock>
-                        </StackPanel>
-                        <DataGrid x:Name="ReturnListDataGrid" AutoGenerateColumns="False" IsReadOnly="True" Margin="20,0" ItemsSource="{Binding}">
-                            <DataGrid.Columns>
-                                <DataGridCheckBoxColumn Binding="{Binding IsReturn}"></DataGridCheckBoxColumn>
-                                <DataGridTextColumn Header="借出时间"  Width="*" Binding="{Binding dateTime}"/>
-                                <DataGridTextColumn Header="使用时长" Width="*"  Binding="{Binding time}"/>
-                                <DataGridTextColumn Header="所借设备" Width="*" Binding="{Binding name}"/>
-                                <DataGridTextColumn Header="租赁数量" Width="*" Binding="{Binding Remain}"/>
-                                <DataGridTextColumn Header="归还数量" Width="*" Binding="{Binding Num}"/>
-                                <DataGridTextColumn Header="金额" Width="*" Binding="{Binding Money}"/>
-                            </DataGrid.Columns>
-                        </DataGrid>
-                    </DockPanel>
+                    <DataGrid x:Name="ReturnListDataGrid" AutoGenerateColumns="False" IsReadOnly="True" Margin="20,0" ItemsSource="{Binding}" SelectionChanged="ReturnListDataGrid_SelectionChanged">
+                        <DataGrid.Columns>
+                            <DataGridCheckBoxColumn Binding="{Binding IsReturn}"></DataGridCheckBoxColumn>
+                            <DataGridTextColumn Header="借出时间"  Width="*" Binding="{Binding dateTime}"/>
+                            <DataGridTextColumn Header="使用时长" Width="*"  Binding="{Binding time}"/>
+                            <DataGridTextColumn Header="所借设备" Width="*" Binding="{Binding name}"/>
+                            <DataGridTextColumn Header="租赁数量" Width="*" Binding="{Binding Remain}"/>
+                            <DataGridTextColumn Header="归还数量" Width="*" Binding="{Binding Num}"/>
+                            <DataGridTextColumn Header="金额" Width="*" Binding="{Binding Money}"/>
+                        </DataGrid.Columns>
+                    </DataGrid>
                 </DockPanel>
             </DockPanel>
         </DockPanel>

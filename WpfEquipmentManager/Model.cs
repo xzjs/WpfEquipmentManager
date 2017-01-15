@@ -9,35 +9,9 @@ using System.Windows.Data;
 
 namespace WpfEquipmentManager
 {
-    public class Equipment
-    {
-        public long Id { get; set; }
-        public string Name { get; set; }
-        public int Num { get; set; }
-        public double Price { get; set; }
-        public long Type { get; set; }
-        public long Detail { get; set; }
-        public string Remark { get; set; }
-        public virtual List<Record> Records { get; set; }
-    }
-
-    public class Record
-    {
-        public long Id { get; set; }
-        public string Name { get; set; }
-        public int Phone { get; set; }
-        public string Card { get; set; }
-        public DateTime Start { get; set; }
-        public DateTime End { get; set; }
-        public long EquipmentId { get; set; }
-        public int LendNum { get; set; }
-        public int Finish { get; set; }
-        public double Total { get; set; }
-        public int ReturnNum { get; set; }
-
-        public virtual Equipment Equipment { get; set; }
-    }
-
+    /// <summary>
+    /// 租赁设备单项
+    /// </summary>
     public class MyListItem:INotifyPropertyChanged
     {
         public int Remain { get; set; }
@@ -61,6 +35,7 @@ namespace WpfEquipmentManager
         }
 
         protected int num;
+        public Equipment Equipment { get; set; }
 
         public event PropertyChangedEventHandler PropertyChanged;
         protected void Notify(string propName)
@@ -72,11 +47,9 @@ namespace WpfEquipmentManager
         }
     }
 
-    public class EquipListItem : MyListItem
-    {
-        public Equipment Equipment { get; set; }
-    }
-
+    /// <summary>
+    /// 归还设备单项
+    /// </summary>
     public class ReturnListItem : MyListItem
     {
         public long id { get; set; }
@@ -85,7 +58,6 @@ namespace WpfEquipmentManager
         public int time { get; set; }
         public string name { get; set; }
         private double money;
-        public Equipment Equipment { get; set; }
 
         public double Money
         {
@@ -123,16 +95,14 @@ namespace WpfEquipmentManager
             }
         }
 
-
-
         /// <summary>
         /// 计算钱数
         /// </summary>
         public double GetTotal()
         {
-            long type = Equipment.Type;
-            long detail = Equipment.Detail;
-            double price = Equipment.Price;
+            long type =(long)Equipment.Type;
+            long detail = (long)Equipment.Detail;
+            double price = (double)Equipment.Price;
             int t = 0;
             if (detail == 0)
             {
@@ -163,6 +133,9 @@ namespace WpfEquipmentManager
         }
     }
 
+    /// <summary>
+    /// 计价规则转换
+    /// </summary>
     public class PriceConverter : IMultiValueConverter
     {
         public object Convert(object[] values, Type targetType, object parameter, CultureInfo culture)

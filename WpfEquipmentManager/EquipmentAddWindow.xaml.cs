@@ -29,7 +29,7 @@ namespace WpfEquipmentManager
         {
             InitializeComponent();
             ec = _ec;
-            num = _ec.Num;
+            num = (int)_ec.Num;
             EquipmentClassDetail.DataContext = ec;
         }
 
@@ -37,7 +37,7 @@ namespace WpfEquipmentManager
         {
             try
             {
-                using (var context = new EmContext())
+                using (var context = new EMDBEntities())
                 {
                     if (ec.Id == 0)
                     {

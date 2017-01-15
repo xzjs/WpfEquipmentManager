@@ -5,20 +5,20 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WpfEquipmentManager"
         mc:Ignorable="d"
-        Title="新建租单" Height="530" Width="800" WindowStartupLocation="CenterOwner">
+        Title="新建租单" Height="530" Width="800" WindowStartupLocation="CenterScreen">
     <Grid>
         <StackPanel HorizontalAlignment="Center">
             <StackPanel Orientation="Horizontal" Margin="0,10">
                 <TextBlock Text="姓名:" FontSize="24" Width="110" TextAlignment="Right"/>
-                <TextBox x:Name="NameTextBox" Width="300" Height="30" VerticalAlignment="Center" FontSize="20"/>
+                <TextBox x:Name="NameTextBox" Width="300" Height="30" VerticalAlignment="Center" FontSize="24"/>
             </StackPanel>
             <StackPanel Orientation="Horizontal" Margin="0,10">
                 <TextBlock Text="一卡通:" FontSize="24" Width="110" TextAlignment="Right"/>
-                <TextBox x:Name="CardTextBox" Width="300" Height="30" FontSize="20"></TextBox>
+                <TextBox x:Name="CardTextBox" Width="300" Height="30" FontSize="24"></TextBox>
             </StackPanel>
             <StackPanel Orientation="Horizontal" Margin="0,10">
                 <TextBlock Text="手机:" FontSize="24" Width="110" TextAlignment="Right"/>
-                <TextBox x:Name="PhoneTextBox" Width="300" Height="30" FontSize="20"></TextBox>
+                <TextBox x:Name="PhoneTextBox" Width="300" Height="30" FontSize="24"></TextBox>
             </StackPanel>
             <StackPanel Orientation="Horizontal" Margin="0,10">
                 <TextBlock Text="开始时间:" FontSize="24" Width="110" TextAlignment="Right"/>
@@ -26,27 +26,12 @@
             </StackPanel>
             <StackPanel Orientation="Horizontal" Margin="0,10">
                 <TextBlock Text="所租设备:" FontSize="24" Width="110" TextAlignment="Right"/>
-                <DataGrid x:Name="DataGrid1" IsReadOnly="True" AutoGenerateColumns="False" Width="150" Height="180" FontSize="16">
+                <DataGrid x:Name="DataGrid1" IsReadOnly="True" AutoGenerateColumns="False" Width="300" Height="180" FontSize="16" SelectionMode="Single" SelectionChanged="DataGrid1_SelectionChanged">
                     <DataGrid.Columns>
                         <DataGridTextColumn Header="设备名"  Width="*" Binding="{Binding Path=Equipment.Name}" FontSize="20"></DataGridTextColumn>
                         <DataGridTextColumn Header="租借数量"  Width="*" Binding="{Binding Path=Num}" FontSize="20"></DataGridTextColumn>
                     </DataGrid.Columns>
                 </DataGrid>
-                <StackPanel Width="140" DataContext="{Binding ElementName=DataGrid1,Path=SelectedItem}" Margin="5,0">
-                    <StackPanel.BindingGroup>
-                        <BindingGroup x:Name="EquipmentListItemBindingGroup">
-                            <BindingGroup.ValidationRules>
-                                <local:EquipmentNumRule></local:EquipmentNumRule>
-                            </BindingGroup.ValidationRules>
-                        </BindingGroup>
-                    </StackPanel.BindingGroup>
-                    <TextBlock Height="30" FontSize="20">设备名</TextBlock>
-                    <TextBox Text="{Binding Path=Equipment.Name}" FontSize="20" Height="30" IsReadOnly="True"></TextBox>
-                    <TextBlock Height="30" FontSize="20">剩余数量</TextBlock>
-                    <TextBox x:Name="RemainTextBox" Text="{Binding Path=Remain}" FontSize="20" Height="30" IsReadOnly="True"></TextBox>
-                    <TextBlock Height="30" FontSize="20">租借数量</TextBlock>
-                    <TextBox x:Name="NumTextBox" FontSize="20" Height="30" Text="{Binding Path=Num}" LostFocus="NumTextBox_LostFocus"></TextBox>
-                </StackPanel>
             </StackPanel>
             <StackPanel Margin="0,10">
                 <Button Width="140" Height="40" Background="#FF169BD5" Click="Button_Click_1">确定</Button>

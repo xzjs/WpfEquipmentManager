@@ -27,8 +27,15 @@ namespace WpfEquipmentManager
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            LeaseWindow lw = new LeaseWindow();
-            lw.ShowDialog();
+            try
+            {
+                LeaseWindow lw = new LeaseWindow();
+                lw.ShowDialog();
+            }catch(Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+                MessageBox.Show(ex.InnerException.Message);
+            }
         }
 
         private void Button_Click_1(object sender, RoutedEventArgs e)

@@ -24,7 +24,7 @@ namespace WpfEquipmentManager
         {
             InitializeComponent();
 
-            using(var context=new EmContext())
+            using(var context=new EMDBEntities())
             {
                 List<Record> lr = context.Records.Include("Equipment").OrderByDescending(m => m.Start).ToList();
                 RecordListDataGrid.ItemsSource = lr;
@@ -45,7 +45,7 @@ namespace WpfEquipmentManager
                 MessageBox.Show("结束日期必须大于开始日期");
                 return;
             }
-            using(var context=new EmContext())
+            using(var context=new EMDBEntities())
             {
                 var records = context.Records.Include("Equipment").Where(m => m.Start > startDate && m.Start < endDate);
                 if (b.Content.ToString() != "全部订单")
