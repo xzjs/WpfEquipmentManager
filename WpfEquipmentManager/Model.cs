@@ -152,4 +152,25 @@ namespace WpfEquipmentManager
             return ((string)value).Split(' ');
         }
     }
+
+    /// <summary>
+    /// 显示金额
+    /// </summary>
+    public class TotalConverter : IValueConverter
+    {
+        public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
+        {
+            double d = (double)value;
+            if (d == 0)
+            {
+                return "尚未归还";
+            }
+            return value;
+        }
+
+        public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
+        {
+            return value;
+        }
+    }
 }

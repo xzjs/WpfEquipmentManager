@@ -7,7 +7,9 @@
       mc:Ignorable="d" 
       d:DesignHeight="300" d:DesignWidth="810.571"
       Title="AccountPage">
-
+    <Page.Resources>
+        <local:TotalConverter x:Key="MyTotalConverter"></local:TotalConverter>
+    </Page.Resources>
     <Grid>
         <DockPanel>
             <DockPanel DockPanel.Dock="Top">
@@ -23,16 +25,16 @@
                     <Button x:Name="UnFinishButton" Width="150" Height="50"  Click="Button_Click">未完成订单</Button>
                 </StackPanel>
             </DockPanel>
-            <DataGrid x:Name="RecordListDataGrid" AutoGenerateColumns="False" IsReadOnly="True" ItemsSource="{Binding}">
+            <DataGrid x:Name="RecordListDataGrid" AutoGenerateColumns="False" IsReadOnly="True" ItemsSource="{Binding}" FontSize="20">
                 <DataGrid.Columns>
                     <DataGridTextColumn Header="单号"  Width="*" Binding="{Binding Id}"/>
                     <DataGridTextColumn Header="租借时间" Width="*"  Binding="{Binding Start}"/>
-                    <DataGridTextColumn Header="归还时间" Width="*" Binding="{Binding Path=End}"/>
+                    <DataGridTextColumn Header="归还时间" Width="*" Binding="{Binding Path=End,TargetNullValue=[尚未归还]}"/>
                     <DataGridTextColumn Header="租借人" Width="*" Binding="{Binding Name}"/>
                     <DataGridTextColumn Header="手机号" Width="*" Binding="{Binding Phone}"/>
                     <DataGridTextColumn Header="一卡通号" Width="*" Binding="{Binding Card}"/>
                     <DataGridTextColumn Header="租借物品" Width="*" Binding="{Binding Path=Equipment.Name}"/>
-                    <DataGridTextColumn Header="金额" Width="*" Binding="{Binding Total}"/>
+                    <DataGridTextColumn Header="金额" Width="*" Binding="{Binding Path=Total,Converter={StaticResource ResourceKey=MyTotalConverter}}"></DataGridTextColumn>
                 </DataGrid.Columns>
             </DataGrid>
         </DockPanel>
