@@ -25,7 +25,8 @@
                     <Button x:Name="UnFinishButton" Width="150" Height="50"  Click="Button_Click">未完成订单</Button>
                 </StackPanel>
             </DockPanel>
-            <DataGrid x:Name="RecordListDataGrid" AutoGenerateColumns="False" IsReadOnly="True" ItemsSource="{Binding}" FontSize="20">
+            <local:RecordReportControl x:Name="recordRepoter" ></local:RecordReportControl>
+            <!--<DataGrid x:Name="RecordListDataGrid" AutoGenerateColumns="False" IsReadOnly="True" ItemsSource="{Binding}" FontSize="20">
                 <DataGrid.Columns>
                     <DataGridTextColumn Header="单号"  Width="*" Binding="{Binding Id}"/>
                     <DataGridTextColumn Header="租借时间" Width="*"  Binding="{Binding Start}"/>
@@ -36,7 +37,7 @@
                     <DataGridTextColumn Header="租借物品" Width="*" Binding="{Binding Path=Equipment.Name}"/>
                     <DataGridTextColumn Header="金额" Width="*" Binding="{Binding Path=Total,Converter={StaticResource ResourceKey=MyTotalConverter}}"></DataGridTextColumn>
                 </DataGrid.Columns>
-            </DataGrid>
+            </DataGrid>-->
         </DockPanel>
     </Grid>
 </Page>

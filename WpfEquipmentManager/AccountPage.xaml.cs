@@ -27,10 +27,13 @@ namespace WpfEquipmentManager
             using(var context=new EMDBEntities())
             {
                 List<Record> lr = context.Records.Include("Equipment").OrderByDescending(m => m.Start).ToList();
-                RecordListDataGrid.ItemsSource = lr;
+                //RecordListDataGrid.ItemsSource = lr;
+                recordRepoter.Load_Data(lr);
             }
             StartDate.SelectedDate = DateTime.Today;
             EndDate.SelectedDate = DateTime.Today.AddDays(1);
+
+            
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
@@ -60,7 +63,8 @@ namespace WpfEquipmentManager
                     records = records.Where(m => m.Finish == flag);
                 }
                 List<Record> lr = records.OrderByDescending(m => m.Start).ToList();
-                RecordListDataGrid.ItemsSource = lr;
+                //RecordListDataGrid.ItemsSource = lr;
+                recordRepoter.Load_Data(lr);
                 if (lr.Count == 0)
                 {
                     MessageBox.Show("没有相关记录");

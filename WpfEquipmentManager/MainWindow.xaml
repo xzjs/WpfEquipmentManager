@@ -26,6 +26,9 @@
                 <Border Background="White" Padding="20" BorderThickness="2" CornerRadius="45" BorderBrush="White" Margin="5,50">
                     <Button Width="40" Height="40" Background="White" BorderBrush="Transparent" FontSize="20" Click="Button_Click_3">还</Button>
                 </Border>
+                <!--<Border Background="White" Padding="20" BorderThickness="2" CornerRadius="45" BorderBrush="White" Margin="5,50">
+                    <Button Width="40" Height="40" Background="White" BorderBrush="Transparent" FontSize="20" Click="Button_Click_4">还</Button>
+                </Border>-->
             </StackPanel>
             <Frame x:Name="PageFrame" NavigationUIVisibility="Hidden"></Frame>
         </DockPanel>

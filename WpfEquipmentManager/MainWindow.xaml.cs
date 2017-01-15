@@ -47,5 +47,11 @@ namespace WpfEquipmentManager
             ReturnWindow rw = new ReturnWindow();
             rw.ShowDialog();
         }
+
+        private void Button_Click_4(object sender, RoutedEventArgs e)
+        {
+            TestWindow tw = new TestWindow();
+            tw.ShowDialog();
+        }
     }
 }

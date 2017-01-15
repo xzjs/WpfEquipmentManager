@@ -70,14 +70,6 @@ namespace WpfEquipmentManager
             }
         }
 
-        //private void TextBox_LostFocus(object sender, RoutedEventArgs e)
-        //{
-        //    DispatcherTimer readDataTimer = new DispatcherTimer();
-        //    readDataTimer.Tick += new EventHandler(UpdateMoney);
-        //    readDataTimer.Interval = new TimeSpan(0,0,1);
-        //    readDataTimer.Start();
-        //}
-
         public void UpdateMoney()
         {
             double totalMoney = 0;
@@ -130,9 +122,13 @@ namespace WpfEquipmentManager
 
         private void ReturnListDataGrid_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            SelectNumWindow snw = new SelectNumWindow((sender as DataGrid).SelectedItem as ReturnListItem);
-            snw.rw = this;
-            snw.ShowDialog();
+            ReturnListItem rli = (sender as DataGrid).SelectedItem as ReturnListItem;
+            if (rli != null)
+            {
+                SelectNumWindow snw = new SelectNumWindow(rli);
+                snw.rw = this;
+                snw.ShowDialog();
+            }
         }
     }
 }

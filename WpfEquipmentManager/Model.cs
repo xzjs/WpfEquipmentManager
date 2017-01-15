@@ -133,6 +133,18 @@ namespace WpfEquipmentManager
         }
     }
 
+    public class RecordListItem
+    {
+        public long Id { get; set; }
+        public String Start { get; set; }
+        public String End { get; set; }
+        public string Name { get; set; }
+        public string Phone { get; set; }
+        public string Card { get; set; }
+        public string EquipmentName { get; set; }
+        public string Total { get; set; }
+    }
+
     /// <summary>
     /// 计价规则转换
     /// </summary>
