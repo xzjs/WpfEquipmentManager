@@ -41,9 +41,9 @@ namespace WpfEquipmentManager
             };
             foreach(var item in ltb)
             {
-                if (Validation.GetHasError(Num))
+                if (Validation.GetHasError(item))
                 {
-                    List<ValidationError> lv = Validation.GetErrors(Num).ToList();
+                    List<ValidationError> lv = Validation.GetErrors(item).ToList();
                     foreach (var v in lv)
                     {
                         MessageBox.Show(v.ErrorContent.ToString());
