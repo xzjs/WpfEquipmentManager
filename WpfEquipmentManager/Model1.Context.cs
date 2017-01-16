@@ -26,6 +26,7 @@ namespace WpfEquipmentManager
         }
     
         public virtual DbSet<Equipment> Equipments { get; set; }
+        public virtual DbSet<Key> Keys { get; set; }
         public virtual DbSet<Record> Records { get; set; }
     }
 }

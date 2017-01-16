@@ -20,6 +20,7 @@ namespace WpfEquipmentManager
     /// </summary>
     public partial class MainPage : Page
     {
+        public MainWindow mw;
         public MainPage()
         {
             InitializeComponent();
@@ -42,6 +43,16 @@ namespace WpfEquipmentManager
         {
             ReturnWindow rw = new ReturnWindow();
             rw.ShowDialog();
+        }
+
+        private void Button_Click_2(object sender, RoutedEventArgs e)
+        {
+            mw.PageFrame.Content = new EquipmentListPage();
+        }
+
+        private void Button_Click_3(object sender, RoutedEventArgs e)
+        {
+            mw.PageFrame.Content = new AccountPage();
         }
     }
 }

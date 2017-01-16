@@ -5,17 +5,27 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:WpfEquipmentManager"
       mc:Ignorable="d" 
-      d:DesignHeight="300" d:DesignWidth="820.084"
+      d:DesignHeight="425" d:DesignWidth="820.084"
       Title="MainPage">
 
     <Grid>
-        <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Center">
-            
-                <StackPanel Orientation="Horizontal">
-                    <Button Width="300" Height="180" Margin="50,0" FontSize="24" Click="Button_Click" >租</Button>
-                    <Button Width="300" Height="180" Margin="50,0" FontSize="24" Click="Button_Click_1" >还</Button>
+        <DockPanel>
+            <StackPanel DockPanel.Dock="Left" Width="450" Orientation="Horizontal" VerticalAlignment="Center">
+                <StackPanel>
+                    <Button Width="350" Height="100" Background="#FF006699" Foreground="White" FontSize="24" Margin="50,20" Click="Button_Click_2">设 备 管 理</Button>
+                    <Button Width="350" Height="100" Background="#FF006699" Foreground="White" FontSize="24" Margin="50,20" Click="Button_Click_3">账 务 管 理</Button>
+                    <Button Width="350" Height="100" Background="#FF006699" Foreground="White" FontSize="24" Margin="50,20">系 统 设 置</Button>
                 </StackPanel>
-            
-        </StackPanel>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                <Button Width="110" Height="100" Margin="50,0" FontSize="24" Click="Button_Click" BorderBrush="Transparent" Background="{x:Null}" >
+                    <Image Source="img/lend_big_button.png"></Image>
+                </Button>
+                <Button Width="110" Height="100" Margin="50,0" FontSize="24" Click="Button_Click_1" BorderBrush="Transparent" Background="{x:Null}">
+                    <Image Source="img/return_big_button.png"></Image>
+                </Button>
+            </StackPanel>
+
+        </DockPanel>
     </Grid>
 </Page>

@@ -5,32 +5,46 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WpfEquipmentManager"
         mc:Ignorable="d"
-        Title="XX设备管理系统"  WindowState="Maximized" d:DesignHeight="568" d:DesignWidth="922">
+        Title="露营地滑雪设备租赁管理系统"  WindowState="Maximized" d:DesignHeight="568" d:DesignWidth="922">
     <Grid>
         <DockPanel>
-            <DockPanel DockPanel.Dock="Top" Background="#FFD7D7D7">
-                <StackPanel DockPanel.Dock="Right" Orientation="Horizontal">
-                    <!--<Button FontSize="20" Width="130">用户管理</Button>-->
-                    <Button FontSize="20" Width="130" Click="Button_Click">设备管理</Button>
-                    <Button FontSize="20" Width="130" Click="Button_Click_1">账务管理</Button>
-                    <Button FontSize="20" Width="130">系统设置</Button>
-                </StackPanel>
+            <DockPanel DockPanel.Dock="Top">
+                <DockPanel.Background>
+                    <ImageBrush ImageSource="img/head_bg.png"/>
+                </DockPanel.Background>
                 <StackPanel Height="100" Orientation="Horizontal">
-                    <TextBlock Text="XX设备管理系统" FontSize="24" VerticalAlignment="Center" Margin="100,0,0,0"/>
+                    <TextBlock Text="露营地滑雪设备租赁管理系统" FontSize="36" VerticalAlignment="Center" Margin="100,0,0,0" FontWeight="Bold" Foreground="White"/>
                 </StackPanel>
             </DockPanel>
-            <StackPanel DockPanel.Dock="Left" Background="#FFD7D7D7">
-                <Border Background="White" Padding="20" BorderThickness="2" CornerRadius="45" BorderBrush="White" Margin="5,50">
-                    <Button Width="40" Height="40" Background="White" BorderBrush="Transparent" FontSize="20" Click="Button_Click_2">租</Button>
-                </Border>
-                <Border Background="White" Padding="20" BorderThickness="2" CornerRadius="45" BorderBrush="White" Margin="5,50">
-                    <Button Width="40" Height="40" Background="White" BorderBrush="Transparent" FontSize="20" Click="Button_Click_3">还</Button>
-                </Border>
+            <DockPanel DockPanel.Dock="Left" Width="100">
+                <DockPanel.Background>
+                    <ImageBrush ImageSource="img/left_bar_bg.png"/>
+                </DockPanel.Background>
+                <StackPanel DockPanel.Dock="Bottom">
+                    <Button Height="80" Width="80" BorderBrush="Transparent" Background="{x:Null}" Click="Button_Click_5">
+                        <Image Source="img/home_button.png"></Image>
+                    </Button>
+                </StackPanel>
+                <StackPanel>
+                    <Button Width="80" Height="80" BorderBrush="Transparent" FontSize="20" Click="Button_Click_2" Margin="0,20" Background="{x:Null}" Foreground="{x:Null}">
+                        <Image Source="img/lend_button.png">
+                        </Image>
+                    </Button>
+                    <Button Width="80" Height="80" BorderBrush="Transparent" FontSize="20" Click="Button_Click_3" Margin="0,20" Background="{x:Null}">
+                        <Image Source="img/return_button.png"></Image>
+                    </Button>
+                </StackPanel>
+
+
                 <!--<Border Background="White" Padding="20" BorderThickness="2" CornerRadius="45" BorderBrush="White" Margin="5,50">
                     <Button Width="40" Height="40" Background="White" BorderBrush="Transparent" FontSize="20" Click="Button_Click_4">还</Button>
                 </Border>-->
-            </StackPanel>
-            <Frame x:Name="PageFrame" NavigationUIVisibility="Hidden"></Frame>
+            </DockPanel>
+            <Frame x:Name="PageFrame" NavigationUIVisibility="Hidden">
+                <Frame.Background>
+                    <ImageBrush ImageSource="img/frame_bg.png"/>
+                </Frame.Background>
+            </Frame>
         </DockPanel>
     </Grid>
 </Window>

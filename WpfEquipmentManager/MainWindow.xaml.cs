@@ -23,7 +23,9 @@ namespace WpfEquipmentManager
         public MainWindow()
         {
             InitializeComponent();
-            PageFrame.Content = new MainPage();
+            MainPage mp = new MainPage();
+            mp.mw = this;
+            PageFrame.Content = mp;
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
@@ -52,6 +54,13 @@ namespace WpfEquipmentManager
         {
             TestWindow tw = new TestWindow();
             tw.ShowDialog();
+        }
+
+        private void Button_Click_5(object sender, RoutedEventArgs e)
+        {
+            MainPage mp = new MainPage();
+            mp.mw = this;
+            PageFrame.Content = mp;
         }
     }
 }

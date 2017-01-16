@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-    <Schema Namespace="EquipmentManageDBModel.Store" Provider="System.Data.SQLite.EF6" ProviderManifestToken="data source=&quot;C:\Users\childe\Documents\Visual Studio 2015\Projects\WpfEquipmentManager\WpfEquipmentManager\EquipmentManageDB.db&quot;" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+      <Schema Namespace="EquipmentManageDBModel.Store" Provider="System.Data.SQLite.EF6" ProviderManifestToken="data source=&quot;C:\Users\childe\Documents\Visual Studio 2015\Projects\WpfEquipmentManager\WpfEquipmentManager\EquipmentManageDB.db&quot;" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Equipments">
           <Key>
             <PropertyRef Name="Id" />
@@ -16,6 +16,14 @@
           <Property Name="Type" Type="integer" Nullable="false" />
           <Property Name="Detail" Type="integer" Nullable="false" />
           <Property Name="Remark" Type="nvarchar" MaxLength="2147483647" />
+        </EntityType>
+        <EntityType Name="Keys">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="integer" Nullable="false" />
+          <Property Name="Serial" Type="nvarchar" MaxLength="2147483647" />
+          <Property Name="Key" Type="nvarchar" MaxLength="2147483647" />
         </EntityType>
         <EntityType Name="Records">
           <Key>
@@ -47,13 +55,15 @@
         </Association>
         <EntityContainer Name="EquipmentManageDBModelStoreContainer">
           <EntitySet Name="Equipments" EntityType="Self.Equipments" store:Type="Tables" />
+          <EntitySet Name="Keys" EntityType="Self.Keys" store:Type="Tables" />
           <EntitySet Name="Records" EntityType="Self.Records" store:Type="Tables" />
           <AssociationSet Name="FK_Records_0_0" Association="Self.FK_Records_0_0">
             <End Role="Equipments" EntitySet="Equipments" />
             <End Role="Records" EntitySet="Records" />
           </AssociationSet>
         </EntityContainer>
-      </Schema></edmx:StorageModels>
+      </Schema>
+    </edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="EquipmentManageDBModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -70,13 +80,21 @@
           <Property Name="Remark" Type="String" MaxLength="2147483647" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="Records" Relationship="Self.FK_Records_0_0" FromRole="Equipments" ToRole="Records" />
         </EntityType>
+        <EntityType Name="Key">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int64" Nullable="false" />
+          <Property Name="Serial" Type="String" MaxLength="2147483647" FixedLength="false" Unicode="true" />
+          <Property Name="Key1" Type="String" MaxLength="2147483647" FixedLength="false" Unicode="true" />
+        </EntityType>
         <EntityType Name="Record">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Name" Type="String" MaxLength="2147483647" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="Phone" Type="String" Nullable="false" />
+          <Property Name="Phone" Type="String" MaxLength="2147483647" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="Card" Type="String" MaxLength="2147483647" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="Start" Type="DateTime" Nullable="false" />
           <Property Name="End" Type="DateTime" />
@@ -101,6 +119,7 @@
         </Association>
         <EntityContainer Name="EMDBEntities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="Equipments" EntityType="Self.Equipment" />
+          <EntitySet Name="Keys" EntityType="Self.Key" />
           <EntitySet Name="Records" EntityType="Self.Record" />
           <AssociationSet Name="FK_Records_0_0" Association="Self.FK_Records_0_0">
             <End Role="Equipments" EntitySet="Equipments" />
@@ -123,6 +142,15 @@
                 <ScalarProperty Name="Type" ColumnName="Type" />
                 <ScalarProperty Name="Detail" ColumnName="Detail" />
                 <ScalarProperty Name="Remark" ColumnName="Remark" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Keys">
+            <EntityTypeMapping TypeName="EquipmentManageDBModel.Key">
+              <MappingFragment StoreEntitySet="Keys">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Serial" ColumnName="Serial" />
+                <ScalarProperty Name="Key1" ColumnName="Key" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
