@@ -9,38 +9,38 @@
     <Grid x:Name="EquipmentClassDetail" >
         <DockPanel>
             <StackPanel DockPanel.Dock="Bottom">
-                <Button Width="140" Height="40" Margin="0,20" Background="#FF169BD5" Foreground="White" Click="Button_Click">确认</Button>
+                <Button Width="140" Height="40" Margin="0,20" Background="#FF169BD5" Foreground="White" Click="Button_Click" FontSize="20">确认</Button>
             </StackPanel>
             <StackPanel HorizontalAlignment="Center" Margin="0,70,0,0">
                 <StackPanel Orientation="Horizontal" Margin="0,5" >
-                    <TextBlock Text="设备名称:" VerticalAlignment="Center" Margin="5,0" Width="51" TextAlignment="Right"/>
-                    <TextBox x:Name="Name" Width="320" Height="30" Margin="5,0" Text="{Binding Path=Name}"></TextBox>
+                    <TextBlock Text="设备名称:" VerticalAlignment="Center" Margin="5,0" Width="85" TextAlignment="Right" FontSize="20"/>
+                    <TextBox x:Name="Name" Width="320" Height="30" Margin="5,0" Text="{Binding Path=Name}" FontSize="20"></TextBox>
                 </StackPanel>
                 <StackPanel Orientation="Horizontal" Margin="0,5">
-                    <TextBlock Text="数量:" VerticalAlignment="Center" Margin="5,0" Width="51" TextAlignment="Right"/>
-                    <TextBox x:Name="Num" Width="320" Height="30" Margin="5,0" Text="{Binding Path=Num}"></TextBox>
+                    <TextBlock Text="数量:" VerticalAlignment="Center" Margin="5,0" Width="85" TextAlignment="Right" FontSize="20"/>
+                    <TextBox x:Name="Num" Width="320" Height="30" Margin="5,0" Text="{Binding Path=Num}" FontSize="20"></TextBox>
                     <!--<xctk:ValueRangeTextBox Width="320" Height="30" Margin="5,0"></xctk:ValueRangeTextBox>-->
                 </StackPanel>
                 <StackPanel Orientation="Horizontal" Margin="0,5">
-                    <TextBlock Text="计价规则:" VerticalAlignment="Center" Margin="5,0" Width="51" TextAlignment="Right"/>
-                    <TextBox x:Name="Price" Width="70" Height="30" Margin="5,0" Text="{Binding Path=Price}"></TextBox>
-                    <TextBlock VerticalAlignment="Center" Margin="5,0">元</TextBlock>
-                    <ComboBox x:Name="Type" SelectedIndex="{Binding Path=Type}" VerticalAlignment="Center" Margin="5,0">
+                    <TextBlock Text="计价规则:" VerticalAlignment="Center" Margin="5,0" Width="85" TextAlignment="Right" FontSize="20"/>
+                    <TextBox x:Name="Price" Width="70" Height="30" Margin="5,0" Text="{Binding Path=Price}" FontSize="20"></TextBox>
+                    <TextBlock VerticalAlignment="Center" Margin="5,0" FontSize="20">元</TextBlock>
+                    <ComboBox x:Name="Type" SelectedIndex="{Binding Path=Type}" VerticalAlignment="Center" Margin="5,0" FontSize="20">
                         <ComboBoxItem Content="小时"/>
                         <ComboBoxItem>半小时</ComboBoxItem>
                     </ComboBox>
                 </StackPanel>
                 <StackPanel Orientation="Horizontal" Margin="0,5" >
-                    <TextBlock Width="51" VerticalAlignment="Center" Margin="5,0"/>
+                    <TextBlock Width="85" VerticalAlignment="Center" Margin="5,0"/>
                     <!--<TextBox Width="320" Height="30" Margin="5,0"></TextBox>-->
-                    <ComboBox x:Name="Detail" Width="320" Margin="0,5" SelectedIndex="{Binding Path=Detail}">
+                    <ComboBox x:Name="Detail" Width="320" Margin="5" SelectedIndex="{Binding Path=Detail}" FontSize="20">
                         <ComboBoxItem>向上取整</ComboBoxItem>
                         <ComboBoxItem>精确计算</ComboBoxItem>
                     </ComboBox>
                 </StackPanel>
                 <StackPanel Orientation="Horizontal" Margin="0,5" HorizontalAlignment="Center">
-                    <TextBlock Width="51" Text="备注:" VerticalAlignment="Center" Margin="5,0" TextAlignment="Right"/>
-                    <TextBox x:Name="Remark" Width="320" Height="30" Margin="5,0" Text="{Binding Path=Remark}"></TextBox>
+                    <TextBlock Width="85" Text="备注:" VerticalAlignment="Center" Margin="5,0" TextAlignment="Right" FontSize="20"/>
+                    <TextBox x:Name="Remark" Width="320" Height="30" Margin="5,0" Text="{Binding Path=Remark}" FontSize="20"></TextBox>
                 </StackPanel>
             </StackPanel>
         </DockPanel>
