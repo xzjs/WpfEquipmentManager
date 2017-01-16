@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Data.Entity;
+using System.Data.Entity.SqlServer;
 using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
@@ -56,6 +57,17 @@ namespace WpfEquipmentManager
                     ecs.Remove(ec);
 
                 }
+            }
+        }
+
+        private void Button_Click_3(object sender, RoutedEventArgs e)
+        {
+            using (var db=new EMDBEntities())
+            {
+                string s = SearchTextBox.Text.Trim();
+                List<Equipment> le = db.Equipments.SqlQuery("select * from Equipments where name like '%"+s+"%'").ToList();
+                ecs = new ObservableCollection<Equipment>(le);
+                DataGrid1.ItemsSource = ecs;
             }
         }
     }

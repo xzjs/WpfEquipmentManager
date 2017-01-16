@@ -47,6 +47,7 @@
                               <Style>
                                 <FontFamily>宋体</FontFamily>
                                 <FontSize>20pt</FontSize>
+                                <Color>White</Color>
                               </Style>
                             </TextRun>
                           </TextRuns>
@@ -83,6 +84,7 @@
                               <Style>
                                 <FontFamily>宋体</FontFamily>
                                 <FontSize>20pt</FontSize>
+                                <Color>White</Color>
                               </Style>
                             </TextRun>
                           </TextRuns>
@@ -119,6 +121,7 @@
                               <Style>
                                 <FontFamily>宋体</FontFamily>
                                 <FontSize>20pt</FontSize>
+                                <Color>White</Color>
                               </Style>
                             </TextRun>
                           </TextRuns>
@@ -155,6 +158,7 @@
                               <Style>
                                 <FontFamily>宋体</FontFamily>
                                 <FontSize>20pt</FontSize>
+                                <Color>White</Color>
                               </Style>
                             </TextRun>
                           </TextRuns>
@@ -191,6 +195,7 @@
                               <Style>
                                 <FontFamily>宋体</FontFamily>
                                 <FontSize>20pt</FontSize>
+                                <Color>White</Color>
                               </Style>
                             </TextRun>
                           </TextRuns>
@@ -227,6 +232,7 @@
                               <Style>
                                 <FontFamily>宋体</FontFamily>
                                 <FontSize>20pt</FontSize>
+                                <Color>White</Color>
                               </Style>
                             </TextRun>
                           </TextRuns>
@@ -263,6 +269,7 @@
                               <Style>
                                 <FontFamily>宋体</FontFamily>
                                 <FontSize>20pt</FontSize>
+                                <Color>White</Color>
                               </Style>
                             </TextRun>
                           </TextRuns>
@@ -299,6 +306,7 @@
                               <Style>
                                 <FontFamily>宋体</FontFamily>
                                 <FontSize>20pt</FontSize>
+                                <Color>White</Color>
                               </Style>
                             </TextRun>
                           </TextRuns>

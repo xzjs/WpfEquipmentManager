@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WpfEquipmentManager"
         mc:Ignorable="d"
-        Title="EquipmentAddWindow" Height="600" Width="800">
+        Title="添加设备" Height="600" Width="800">
     <Grid x:Name="EquipmentClassDetail" >
         <DockPanel>
             <StackPanel DockPanel.Dock="Bottom">

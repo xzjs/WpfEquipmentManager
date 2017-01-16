@@ -14,8 +14,8 @@
         <DockPanel>
             <DockPanel DockPanel.Dock="Top">
                 <StackPanel DockPanel.Dock="Right" Orientation="Horizontal">
-                    <TextBox Width="340" Height="40" Margin="5"></TextBox>
-                    <Button Width="140" Height="40" Margin="5">搜索</Button>
+                    <TextBox x:Name="SearchTextBox" Width="340" Height="40" Margin="5" FontSize="20"></TextBox>
+                    <Button Width="140" Height="40" Margin="5" Click="Button_Click_3">搜索</Button>
                 </StackPanel>
                 <StackPanel Orientation="Horizontal">
                     <!--<Button Background="#FFDD514C" Foreground="White" Width="100" Height="27" Margin="10">批量删除</Button>-->

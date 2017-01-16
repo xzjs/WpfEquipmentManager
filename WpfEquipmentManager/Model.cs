@@ -156,7 +156,7 @@ namespace WpfEquipmentManager
             string detail_num = values[2].ToString();
             string type = type_num == "0" ? "小时" : "半小时";
             string detail = type_num == "0" ? "向上取整" : "精确到分钟";
-            return values[0]+"元/"+type+"\n"+detail;
+            return values[0]+"元/"+type+"，"+detail;
         }
 
         public object[] ConvertBack(object value, Type[] targetTypes, object parameter, CultureInfo culture)
