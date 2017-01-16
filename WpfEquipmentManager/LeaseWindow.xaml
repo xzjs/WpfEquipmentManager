@@ -34,7 +34,7 @@
                 </DataGrid>
             </StackPanel>
             <StackPanel Margin="0,10">
-                <Button Width="140" Height="40" Background="#FF169BD5" Click="Button_Click_1">确定</Button>
+                <Button Width="140" Height="40" Background="#FF169BD5" Click="Button_Click_1" FontSize="20" Foreground="White">确定</Button>
             </StackPanel>
         </StackPanel>
     </Grid>

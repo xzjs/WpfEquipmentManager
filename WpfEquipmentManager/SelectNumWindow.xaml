@@ -5,17 +5,18 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WpfEquipmentManager"
         mc:Ignorable="d"
-        Title="选择数量" Height="126.85" Width="166.173" WindowStartupLocation="CenterScreen" Closing="Window_Closing">
+        Title="选择数量" Height="256" Width="332" WindowStartupLocation="CenterScreen" Closing="Window_Closing">
     <Grid>
         <StackPanel x:Name="MylistItemStackPanel" DataContext="{Binding}">
-            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,20">
-                <TextBlock Text="设备名" Margin="10,0" Width="48" TextAlignment="Right"></TextBlock>
-                <TextBlock x:Name="NameTextBox" Text="{Binding Path=Equipment.Name}" Margin="10,0"></TextBlock>
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,20" Width="200">
+                <TextBlock Text="设备名" Margin="10,0" Width="80" TextAlignment="Right" FontSize="20"></TextBlock>
+                <TextBlock x:Name="NameTextBox" Text="{Binding Path=Equipment.Name}" Margin="10,0" FontSize="20"></TextBlock>
             </StackPanel>
-            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
-                <TextBlock Text="选择数量" Margin="10,0"></TextBlock>
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Width="200">
+                <TextBlock Text="选择数量" Margin="10,0" FontSize="20"></TextBlock>
                 <ComboBox x:Name="NumComboBox" Margin="10,0" SelectedIndex="{Binding Path=Num}"></ComboBox>
             </StackPanel>
+            <Button FontSize="20" Width="100" Margin="0,40,0,0" Background="#FF169BD5" Foreground="White" Click="Button_Click">确定</Button>
         </StackPanel>
     </Grid>
 </Window>

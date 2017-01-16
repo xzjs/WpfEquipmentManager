@@ -40,5 +40,10 @@ namespace WpfEquipmentManager
                 rw.UpdateMoney();
             }
         }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            Close();
+        }
     }
 }

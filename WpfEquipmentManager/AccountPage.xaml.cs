@@ -23,17 +23,25 @@ namespace WpfEquipmentManager
         public AccountPage()
         {
             InitializeComponent();
-
-            using(var context=new EMDBEntities())
+            try
             {
-                List<Record> lr = context.Records.Include("Equipment").OrderByDescending(m => m.Start).ToList();
-                //RecordListDataGrid.ItemsSource = lr;
-                recordRepoter.Load_Data(lr);
+                using (var context = new EMDBEntities())
+                {
+                    List<Record> lr = context.Records.Include("Equipment").OrderByDescending(m => m.Start).ToList();
+                    //RecordListDataGrid.ItemsSource = lr;
+                    recordRepoter.Load_Data(lr);
+                }
+                StartDate.SelectedDate = DateTime.Today;
+                EndDate.SelectedDate = DateTime.Today.AddDays(1);
             }
-            StartDate.SelectedDate = DateTime.Today;
-            EndDate.SelectedDate = DateTime.Today.AddDays(1);
-
-            
+            catch(Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+                if (ex.InnerException != null)
+                {
+                    MessageBox.Show(ex.InnerException.Message);
+                }
+            }
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
