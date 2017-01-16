@@ -47,6 +47,10 @@ namespace WpfEquipmentManager
 
         private void Button_Click_1(object sender, RoutedEventArgs e)
         {
+            if (CardTextBox.Text == "" && PhoneTextBox.Text == "") {
+                MessageBox.Show("一卡通和手机号不可都为空");
+                return;
+            }
             try
             {
                 List<Record> lrs = new List<Record>();
