@@ -5,6 +5,7 @@ using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Controls;
 using System.Windows.Data;
 
 namespace WpfEquipmentManager
@@ -133,6 +134,9 @@ namespace WpfEquipmentManager
         }
     }
 
+    /// <summary>
+    /// 记录列表单项
+    /// </summary>
     public class RecordListItem
     {
         public long Id { get; set; }
@@ -183,6 +187,51 @@ namespace WpfEquipmentManager
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
         {
             return value;
+        }
+    }
+
+    public class NumRule : ValidationRule
+    {
+        public override ValidationResult Validate(object value, CultureInfo cultureInfo)
+        {
+            try
+            {
+                int num = Convert.ToInt32(value);
+                if (num > 0)
+                {
+                    return new ValidationResult(true, null);
+                }
+                else
+                {
+                    return new ValidationResult(false, "请输入大于0的数");
+                }
+            }
+            catch(Exception ex)
+            {
+                return new ValidationResult(false, "请输入数字");
+            }
+        }
+    }
+    public class DecimalRule : ValidationRule
+    {
+        public override ValidationResult Validate(object value, CultureInfo cultureInfo)
+        {
+            try
+            {
+                double num = Convert.ToInt32(value);
+                if (num > 0)
+                {
+                    return new ValidationResult(true, null);
+                }
+                else
+                {
+                    return new ValidationResult(false, "请输入大于0的数");
+                }
+            }
+            catch (Exception ex)
+            {
+                return new ValidationResult(false, "请输入数字");
+            }
         }
     }
 }

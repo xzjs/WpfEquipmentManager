@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WpfEquipmentManager"
         mc:Ignorable="d"
-        Title="添加设备" Height="600" Width="800">
+        Title="添加设备" Height="600" Width="800" Icon="Apps_system_file_manager_128px_1187114_easyicon.net.ico">
     <Grid x:Name="EquipmentClassDetail" >
         <DockPanel>
             <StackPanel DockPanel.Dock="Bottom">
@@ -18,12 +18,28 @@
                 </StackPanel>
                 <StackPanel Orientation="Horizontal" Margin="0,5">
                     <TextBlock Text="数量:" VerticalAlignment="Center" Margin="5,0" Width="85" TextAlignment="Right" FontSize="20"/>
-                    <TextBox x:Name="Num" Width="320" Height="30" Margin="5,0" Text="{Binding Path=Num}" FontSize="20"></TextBox>
+                    <TextBox x:Name="Num" Width="320" Height="30" Margin="5,0" FontSize="20">
+                        <TextBox.Text>
+                            <Binding Path="Num">
+                                <Binding.ValidationRules>
+                                    <local:NumRule></local:NumRule>
+                                </Binding.ValidationRules>
+                            </Binding>
+                        </TextBox.Text>
+                    </TextBox>
                     <!--<xctk:ValueRangeTextBox Width="320" Height="30" Margin="5,0"></xctk:ValueRangeTextBox>-->
                 </StackPanel>
                 <StackPanel Orientation="Horizontal" Margin="0,5">
                     <TextBlock Text="计价规则:" VerticalAlignment="Center" Margin="5,0" Width="85" TextAlignment="Right" FontSize="20"/>
-                    <TextBox x:Name="Price" Width="70" Height="30" Margin="5,0" Text="{Binding Path=Price}" FontSize="20"></TextBox>
+                    <TextBox x:Name="Price" Width="70" Height="30" Margin="5,0" FontSize="20">
+                        <TextBox.Text>
+                            <Binding Path="Price">
+                                <Binding.ValidationRules>
+                                    <local:DecimalRule/>
+                                </Binding.ValidationRules>
+                            </Binding>
+                        </TextBox.Text>
+                    </TextBox>
                     <TextBlock VerticalAlignment="Center" Margin="5,0" FontSize="20">元</TextBlock>
                     <ComboBox x:Name="Type" SelectedIndex="{Binding Path=Type}" VerticalAlignment="Center" Margin="5,0" FontSize="20">
                         <ComboBoxItem Content="小时"/>

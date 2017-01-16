@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WpfEquipmentManager"
         mc:Ignorable="d"
-        Title="露营地滑雪设备租赁管理系统"  WindowState="Maximized" d:DesignHeight="568" d:DesignWidth="922" Loaded="Window_Loaded">
+        Title="露营地滑雪设备租赁管理系统"  WindowState="Maximized" d:DesignHeight="568" d:DesignWidth="922" Loaded="Window_Loaded" Icon="Apps_system_file_manager_128px_1187114_easyicon.net.ico">
     <Grid>
         <DockPanel>
             <DockPanel DockPanel.Dock="Top">

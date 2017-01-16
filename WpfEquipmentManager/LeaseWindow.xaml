@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WpfEquipmentManager"
         mc:Ignorable="d"
-        Title="新建租单" Height="530" Width="800" WindowStartupLocation="CenterScreen">
+        Title="新建租单" Height="530" Width="800" WindowStartupLocation="CenterScreen" Icon="Apps_system_file_manager_128px_1187114_easyicon.net.ico">
     <Grid>
         <StackPanel HorizontalAlignment="Center">
             <StackPanel Orientation="Horizontal" Margin="0,10">

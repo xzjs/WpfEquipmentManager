@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WpfEquipmentManager"
         mc:Ignorable="d"
-        Title="编辑数量" Height="204" Width="332" WindowStartupLocation="CenterScreen" Closing="Window_Closing">
+        Title="编辑数量" Height="204" Width="332" WindowStartupLocation="CenterScreen" Closing="Window_Closing" Icon="Apps_system_file_manager_128px_1187114_easyicon.net.ico">
     <Grid>
         <StackPanel x:Name="MylistItemStackPanel" DataContext="{Binding}">
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Width="200" Margin="0,40,0,0">

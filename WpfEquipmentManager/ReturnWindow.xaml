@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WpfEquipmentManager"
         mc:Ignorable="d"
-        Title="设备归还" Height="650" Width="950" WindowStartupLocation="CenterScreen">
+        Title="设备归还" Height="650" Width="950" WindowStartupLocation="CenterScreen" Icon="Apps_system_file_manager_128px_1187114_easyicon.net.ico">
     <Grid>
         <DockPanel>
             <StackPanel DockPanel.Dock="Top" Orientation="Horizontal" Margin="0,20">

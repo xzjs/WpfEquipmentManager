@@ -35,6 +35,22 @@ namespace WpfEquipmentManager
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
+            List<TextBox> ltb = new List<TextBox>
+            {
+                Num,Price
+            };
+            foreach(var item in ltb)
+            {
+                if (Validation.GetHasError(Num))
+                {
+                    List<ValidationError> lv = Validation.GetErrors(Num).ToList();
+                    foreach (var v in lv)
+                    {
+                        MessageBox.Show(v.ErrorContent.ToString());
+                    }
+                    return;
+                }
+            }
             try
             {
                 using (var context = new EMDBEntities())
@@ -47,7 +63,7 @@ namespace WpfEquipmentManager
                     }
                     else
                     {
-
+                        ec.Remark += "。";
                         context.Entry(ec).State = EntityState.Modified;
                         context.SaveChanges();
                     }
