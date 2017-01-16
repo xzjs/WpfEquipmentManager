@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -26,6 +27,8 @@ namespace WpfEquipmentManager
             MainPage mp = new MainPage();
             mp.mw = this;
             PageFrame.Content = mp;
+           
+            
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
@@ -61,6 +64,55 @@ namespace WpfEquipmentManager
             MainPage mp = new MainPage();
             mp.mw = this;
             PageFrame.Content = mp;
+        }
+
+        private void Window_Loaded(object sender, RoutedEventArgs e)
+        {
+            using (var db = new EMDBEntities())
+            {
+                Key k = db.Keys.FirstOrDefault();
+                MD5 md5 = new MD5CryptoServiceProvider();
+                if (k == null)
+                {
+                    MessageBox.Show("当前版本未激活，可免费试用15天");
+                    Key key = new Key();
+
+                    string str = DateTime.Today.ToString();
+                    string result = BitConverter.ToString(md5.ComputeHash(UTF8Encoding.Default.GetBytes(str)), 4, 8);
+                    result= result.Replace("-", "").ToLower();
+                    key.Serial = result;
+                    key.Activation = "请输入激活码";
+                    key.Time = DateTime.Today;
+                    db.Keys.Add(key);
+                    db.SaveChanges();
+                }
+                else
+                {
+                    if (k.Activation == "请输入激活码")
+                    {
+                        TimeSpan ts = DateTime.Today - k.Time;
+                        if (ts.Days > 15)
+                        {
+                            MessageBox.Show("试用期已到");
+                            Close();
+                        }
+                        else
+                        {
+                            MessageBox.Show("还可试用" + (15 - ts.Days) + "天");
+                        }
+                    }
+                    else
+                    {
+                        string result = BitConverter.ToString(md5.ComputeHash(UTF8Encoding.Default.GetBytes(k.Serial+"xzjs")), 4, 8);
+                        result = result.Replace("-", "").ToLower();
+                        if (result != k.Activation)
+                        {
+                            MessageBox.Show("激活码错误");
+                            Close();
+                        }
+                    }
+                }
+            }
         }
     }
 }

@@ -54,5 +54,10 @@ namespace WpfEquipmentManager
         {
             mw.PageFrame.Content = new AccountPage();
         }
+
+        private void Button_Click_4(object sender, RoutedEventArgs e)
+        {
+            mw.PageFrame.Content = new SetupPage();
+        }
     }
 }

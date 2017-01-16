@@ -14,7 +14,7 @@
                 <StackPanel>
                     <Button Width="350" Height="100" Background="#FF006699" Foreground="White" FontSize="24" Margin="50,20" Click="Button_Click_2">设 备 管 理</Button>
                     <Button Width="350" Height="100" Background="#FF006699" Foreground="White" FontSize="24" Margin="50,20" Click="Button_Click_3">账 务 管 理</Button>
-                    <Button Width="350" Height="100" Background="#FF006699" Foreground="White" FontSize="24" Margin="50,20">系 统 设 置</Button>
+                    <Button Width="350" Height="100" Background="#FF006699" Foreground="White" FontSize="24" Margin="50,20" Click="Button_Click_4">系 统 设 置</Button>
                 </StackPanel>
             </StackPanel>
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">

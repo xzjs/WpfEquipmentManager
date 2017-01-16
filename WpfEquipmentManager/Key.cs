@@ -16,6 +16,7 @@ namespace WpfEquipmentManager
     {
         public long Id { get; set; }
         public string Serial { get; set; }
-        public string Key1 { get; set; }
+        public System.DateTime Time { get; set; }
+        public string Activation { get; set; }
     }
 }
