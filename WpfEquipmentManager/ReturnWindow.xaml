@@ -22,9 +22,9 @@
             <DockPanel>
                 <DockPanel>
                     <StackPanel DockPanel.Dock="Bottom" Orientation="Horizontal" HorizontalAlignment="Center">
-                        <TextBlock Foreground="Red">小计：</TextBlock>
-                        <TextBlock x:Name="TotalMoneyTextBlock" Foreground="Red">66</TextBlock>
-                        <TextBlock Foreground="Red">元</TextBlock>
+                        <TextBlock Foreground="Red" FontSize="20">小计：</TextBlock>
+                        <TextBlock x:Name="TotalMoneyTextBlock" Foreground="Red" FontSize="20">0</TextBlock>
+                        <TextBlock Foreground="Red" FontSize="20">元</TextBlock>
                     </StackPanel>
                     <DataGrid x:Name="ReturnListDataGrid" AutoGenerateColumns="False" IsReadOnly="True" Margin="20,0" ItemsSource="{Binding}" SelectionChanged="ReturnListDataGrid_SelectionChanged" FontSize="20">
                         <DataGrid.Columns>
