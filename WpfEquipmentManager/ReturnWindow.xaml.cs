@@ -21,7 +21,7 @@ namespace WpfEquipmentManager
     /// </summary>
     public partial class ReturnWindow : Window
     {
-        public List<ReturnListItem> lrlis;
+        public List<ReturnListItem> lrlis=new List<ReturnListItem>();
         public ReturnWindow()
         {
             InitializeComponent();
@@ -29,7 +29,6 @@ namespace WpfEquipmentManager
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            lrlis = new List<ReturnListItem>();
             using (var context=new EMDBEntities())
             {
                 List<Record> lrs;
@@ -96,6 +95,10 @@ namespace WpfEquipmentManager
             // 减少没有归还的数量
             // 如果没有归还的数量为0，将finish改为1，写入归还时间
             // 设备数增加
+            if (lrlis.Count == 0)
+            {
+                return;
+            }
             using(var context=new EMDBEntities())
             {
                 foreach(var item in lrlis)
