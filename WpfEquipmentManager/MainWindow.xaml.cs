@@ -77,7 +77,7 @@ namespace WpfEquipmentManager
                     MessageBox.Show("当前版本未激活，可免费试用15天");
                     Key key = new Key();
 
-                    string str = DateTime.Today.ToString();
+                    string str = Guid.NewGuid().ToString();
                     string result = BitConverter.ToString(md5.ComputeHash(UTF8Encoding.Default.GetBytes(str)), 4, 8);
                     result= result.Replace("-", "").ToLower();
                     key.Serial = result;

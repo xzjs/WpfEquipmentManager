@@ -57,6 +57,8 @@ namespace WpfEquipmentManager
                     k.Activation = ActiveTextBox.Text;
                     db.SaveChanges();
                     MessageBox.Show("激活成功");
+                    notActiveStackPanel.Visibility = Visibility.Hidden;
+                    isActiveStackPanel.Visibility = Visibility.Visible;
                 }
             }
             else
