@@ -26,7 +26,7 @@
                 <DataGrid x:Name="DataGrid1" IsReadOnly="True" AutoGenerateColumns="False" FontSize="20">
                     <DataGrid.Columns>
                         <DataGridTextColumn Header="设备名称" Width="*" Binding="{Binding Name}" ></DataGridTextColumn>
-                        <DataGridTextColumn Header="数量" Width="*" Binding="{Binding Num}" ></DataGridTextColumn>
+                        <DataGridTextColumn Header="库存数量" Width="*" Binding="{Binding Num}" ></DataGridTextColumn>
                         <DataGridTextColumn Header="计价规则" Width="*">
                             <DataGridTextColumn.Binding>
                                 <MultiBinding Converter="{StaticResource ResourceKey=myPriceConverter}">

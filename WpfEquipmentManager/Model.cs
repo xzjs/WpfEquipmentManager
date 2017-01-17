@@ -213,7 +213,7 @@ namespace WpfEquipmentManager
             }
             catch (Exception ex)
             {
-                return new ValidationResult(false, "请输入数字");
+                return new ValidationResult(false, "请输入合法的数字");
             }
         }
     }
