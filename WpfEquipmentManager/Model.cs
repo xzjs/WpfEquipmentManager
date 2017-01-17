@@ -147,6 +147,8 @@ namespace WpfEquipmentManager
         public string Card { get; set; }
         public string EquipmentName { get; set; }
         public string Total { get; set; }
+        public int LendNum { get; set; }
+        public int ReturnNum { get; set; }
     }
 
     /// <summary>
@@ -190,6 +192,9 @@ namespace WpfEquipmentManager
         }
     }
 
+    /// <summary>
+    /// 数量验证
+    /// </summary>
     public class NumRule : ValidationRule
     {
         public override ValidationResult Validate(object value, CultureInfo cultureInfo)
@@ -212,13 +217,16 @@ namespace WpfEquipmentManager
             }
         }
     }
+    /// <summary>
+    /// 金额验证
+    /// </summary>
     public class DecimalRule : ValidationRule
     {
         public override ValidationResult Validate(object value, CultureInfo cultureInfo)
         {
             try
             {
-                double num = Convert.ToInt32(value);
+                double num = Convert.ToDouble(value);
                 if (num > 0)
                 {
                     return new ValidationResult(true, null);

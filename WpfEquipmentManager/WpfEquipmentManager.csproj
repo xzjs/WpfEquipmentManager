@@ -393,9 +393,7 @@
       <DependentUpon>Model1.edmx</DependentUpon>
     </None>
     <None Include="packages.config" />
-    <None Include="Properties\DataSources\Record.datasource" />
     <None Include="Properties\DataSources\RecordListItem.datasource" />
-    <None Include="Properties\DataSources\ReturnListItem.datasource" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>

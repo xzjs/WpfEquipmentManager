@@ -43,7 +43,9 @@ namespace WpfEquipmentManager
                     Phone = item.Phone,
                     Card = item.Card,
                     EquipmentName = item.Equipment.Name,
-                    Total = item.Total == 0 ? "尚未归还" : item.Total.ToString()
+                    Total = item.Total == 0 ? "尚未归还" : item.Total.ToString(),
+                    LendNum = item.LendNum,
+                    ReturnNum=item.ReturnNum
                 };
                 lrli.Add(rli);
             }
