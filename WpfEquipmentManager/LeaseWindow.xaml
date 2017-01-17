@@ -26,7 +26,7 @@
             </StackPanel>
             <StackPanel Orientation="Horizontal" Margin="0,10">
                 <TextBlock Text="所租设备:" FontSize="24" Width="110" TextAlignment="Right"/>
-                <DataGrid x:Name="DataGrid1" IsReadOnly="True" AutoGenerateColumns="False" Width="300" Height="180" FontSize="16" SelectionMode="Single" SelectionChanged="DataGrid1_SelectionChanged">
+                <DataGrid x:Name="DataGrid1" IsReadOnly="True" AutoGenerateColumns="False" Width="300" Height="180" FontSize="16" SelectionMode="Single" MouseUp="DataGrid1_MouseUp">
                     <DataGrid.Columns>
                         <DataGridTextColumn Header="设备名"  Width="*" Binding="{Binding Path=Equipment.Name}" FontSize="20"></DataGridTextColumn>
                         <DataGridTextColumn Header="租借数量"  Width="*" Binding="{Binding Path=Num}" FontSize="20"></DataGridTextColumn>

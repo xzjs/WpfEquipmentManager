@@ -5,14 +5,29 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WpfEquipmentManager"
         mc:Ignorable="d"
-        Title="编辑数量" Height="204" Width="332" WindowStartupLocation="CenterScreen" Closing="Window_Closing" Icon="Apps_system_file_manager_128px_1187114_easyicon.net.ico">
+        Title="编辑数量" Height="237" Width="332" WindowStartupLocation="CenterScreen" Closing="Window_Closing" Icon="Apps_system_file_manager_128px_1187114_easyicon.net.ico">
     <Grid>
-        <StackPanel x:Name="MylistItemStackPanel" DataContext="{Binding}">
-            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Width="200" Margin="0,40,0,0">
+        <StackPanel x:Name="MylistItemStackPanel">
+            <StackPanel.BindingGroup>
+                <BindingGroup x:Name="SelectNumBindingGroup">
+                    <BindingGroup.ValidationRules>
+                        <local:SelectNumRule></local:SelectNumRule>
+                    </BindingGroup.ValidationRules>
+                </BindingGroup>
+            </StackPanel.BindingGroup>
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Width="200" Margin="0,40,0,5">
+                <TextBlock Text="设备名" FontSize="20" Width="80" TextAlignment="Right" Margin="0"/>
                 <TextBlock x:Name="NameTextBox" Text="{Binding Path=Equipment.Name}" Margin="10,0" FontSize="20" Width="100" TextAlignment="Right"></TextBlock>
-                <ComboBox x:Name="NumComboBox" Margin="10,0" SelectedIndex="{Binding Path=Num}" Width="60" FontSize="20"></ComboBox>
             </StackPanel>
-            <Button FontSize="20" Width="100" Margin="0,40,0,0" Background="#FF169BD5" Foreground="White" Click="Button_Click">确定</Button>
+            <StackPanel Orientation="Horizontal" Width="200" Margin="0,5">
+                <TextBlock Text="数量上限" FontSize="20"></TextBlock>
+                <TextBlock Text="{Binding Path=Remain}" FontSize="20" Width="100" Margin="10,0"></TextBlock>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal" Width="200" Margin="0,5">
+                <TextBlock Text="选择数量" FontSize="20"></TextBlock>
+                <TextBox x:Name="NumTextBox" Text="{Binding Path=Num}" FontSize="20" Width="100" Margin="10,0" LostFocus="TextBox_LostFocus"></TextBox>
+            </StackPanel>
+            <Button FontSize="20" Width="100" Margin="0,20,0,0" Background="#FF169BD5" Foreground="White" Click="Button_Click">确定</Button>
         </StackPanel>
     </Grid>
 </Window>

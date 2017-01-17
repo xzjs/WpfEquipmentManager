@@ -51,6 +51,12 @@ namespace WpfEquipmentManager
                 MessageBox.Show("一卡通和手机号不可都为空");
                 return;
             }
+            int i = 0;
+            if(int.TryParse(NameTextBox.Text, out i))
+            {
+                MessageBox.Show("租借人姓名不可为纯数字");
+                return;
+            }
             try
             {
                 List<Record> lrs = new List<Record>();
@@ -100,10 +106,15 @@ namespace WpfEquipmentManager
             
         }
 
-        private void DataGrid1_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        private void DataGrid1_MouseUp(object sender, MouseButtonEventArgs e)
         {
-            SelectNumWindow snw = new SelectNumWindow(((sender as DataGrid).SelectedItem as MyListItem));
-            snw.ShowDialog();
+            MyListItem mli = DataGrid1.SelectedItem as MyListItem;
+            if (mli != null)
+            {
+                SelectNumWindow snw = new SelectNumWindow(mli);
+                snw.ShowDialog();
+            }
+            
         }
     }
 }

@@ -111,9 +111,9 @@ namespace WpfEquipmentManager
             Close();
         }
 
-        private void ReturnListDataGrid_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        private void ReturnListDataGrid_MouseUp(object sender, System.Windows.Input.MouseButtonEventArgs e)
         {
-            ReturnListItem rli = (sender as DataGrid).SelectedItem as ReturnListItem;
+            ReturnListItem rli = ReturnListDataGrid.SelectedItem as ReturnListItem;
             if (rli != null)
             {
                 SelectNumWindow snw = new SelectNumWindow(rli);

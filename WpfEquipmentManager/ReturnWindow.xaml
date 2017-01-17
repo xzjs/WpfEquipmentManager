@@ -9,7 +9,7 @@
     <Grid>
         <DockPanel>
             <StackPanel DockPanel.Dock="Top" Orientation="Horizontal" Margin="0,20">
-                <ComboBox x:Name="Combobox1" SelectedIndex="0" FontSize="24" VerticalAlignment="Center" Margin="20,0">
+                <ComboBox x:Name="Combobox1" SelectedIndex="1" FontSize="24" VerticalAlignment="Center" Margin="20,0">
                     <ComboBoxItem Content="手机号"/>
                     <ComboBoxItem Content="一卡通"/>
                 </ComboBox>
@@ -26,7 +26,7 @@
                         <TextBlock x:Name="TotalMoneyTextBlock" Foreground="Red" FontSize="20">0</TextBlock>
                         <TextBlock Foreground="Red" FontSize="20">元</TextBlock>
                     </StackPanel>
-                    <DataGrid x:Name="ReturnListDataGrid" AutoGenerateColumns="False" IsReadOnly="True" Margin="20,0" ItemsSource="{Binding}" SelectionChanged="ReturnListDataGrid_SelectionChanged" FontSize="20">
+                    <DataGrid x:Name="ReturnListDataGrid" AutoGenerateColumns="False" IsReadOnly="True" Margin="20,0" ItemsSource="{Binding}" FontSize="20" MouseUp="ReturnListDataGrid_MouseUp">
                         <DataGrid.Columns>
                             <DataGridCheckBoxColumn Binding="{Binding IsReturn}"></DataGridCheckBoxColumn>
                             <DataGridTextColumn Header="借出时间"  Width="*" Binding="{Binding dateTime}"/>

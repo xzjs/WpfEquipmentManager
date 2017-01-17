@@ -24,12 +24,6 @@ namespace WpfEquipmentManager
         {
             InitializeComponent();
 
-            List<int> li = new List<int>();
-            for(int i = 0; i <= mli.Remain; i++)
-            {
-                li.Add(i);
-            }
-            NumComboBox.ItemsSource = li;
             MylistItemStackPanel.DataContext = mli;
         }
 
@@ -43,7 +37,21 @@ namespace WpfEquipmentManager
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
+            if (Validation.GetHasError(MylistItemStackPanel))
+            {
+                List<ValidationError> lv = Validation.GetErrors(MylistItemStackPanel).ToList();
+                foreach (var v in lv)
+                {
+                    MessageBox.Show(v.ErrorContent.ToString());
+                }
+                return;
+            }
             Close();
+        }
+
+        private void TextBox_LostFocus(object sender, RoutedEventArgs e)
+        {
+            SelectNumBindingGroup.CommitEdit();
         }
     }
 }

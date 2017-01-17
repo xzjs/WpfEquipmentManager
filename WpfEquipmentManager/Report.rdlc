@@ -308,7 +308,22 @@
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value>租借数量</Value>
+                              <Value>未归还</Value>
+                              <Style>
+                                <FontFamily>宋体</FontFamily>
+                                <FontSize>20pt</FontSize>
+                                <Color>White</Color>
+                              </Style>
+                            </TextRun>
+                          </TextRuns>
+                          <Style>
+                            <TextAlign>Center</TextAlign>
+                          </Style>
+                        </Paragraph>
+                        <Paragraph>
+                          <TextRuns>
+                            <TextRun>
+                              <Value>数量</Value>
                               <Style>
                                 <FontFamily>宋体</FontFamily>
                                 <FontSize>20pt</FontSize>
@@ -345,7 +360,7 @@
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value>归还数量</Value>
+                              <Value>已归还数量</Value>
                               <Style>
                                 <FontFamily>宋体</FontFamily>
                                 <FontSize>20pt</FontSize>
@@ -790,7 +805,7 @@
           </TablixMembers>
         </TablixRowHierarchy>
         <DataSetName>DataSet1</DataSetName>
-        <Height>2.07312cm</Height>
+        <Height>2.07313cm</Height>
         <Width>47.5cm</Width>
         <Style>
           <Border>

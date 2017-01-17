@@ -13,7 +13,7 @@ namespace WpfEquipmentManager
     /// <summary>
     /// 租赁设备单项
     /// </summary>
-    public class MyListItem:INotifyPropertyChanged
+    public class MyListItem : INotifyPropertyChanged
     {
         public int Remain { get; set; }
 
@@ -101,7 +101,7 @@ namespace WpfEquipmentManager
         /// </summary>
         public double GetTotal()
         {
-            long type =(long)Equipment.Type;
+            long type = (long)Equipment.Type;
             long detail = (long)Equipment.Detail;
             double price = (double)Equipment.Price;
             int t = 0;
@@ -162,7 +162,7 @@ namespace WpfEquipmentManager
             string detail_num = values[2].ToString();
             string type = type_num == "0" ? "小时" : "半小时";
             string detail = type_num == "0" ? "向上取整" : "精确到分钟";
-            return values[0]+"元/"+type+"，"+detail;
+            return values[0] + "元/" + type + "，" + detail;
         }
 
         public object[] ConvertBack(object value, Type[] targetTypes, object parameter, CultureInfo culture)
@@ -211,7 +211,7 @@ namespace WpfEquipmentManager
                     return new ValidationResult(false, "请输入大于0的数");
                 }
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 return new ValidationResult(false, "请输入数字");
             }
@@ -240,6 +240,33 @@ namespace WpfEquipmentManager
             {
                 return new ValidationResult(false, "请输入数字");
             }
+        }
+    }
+
+    public class SelectNumRule : ValidationRule
+    {
+        public override ValidationResult Validate(object value, CultureInfo cultureInfo)
+        {
+            try
+            {
+                BindingGroup bindingGroup = (BindingGroup)value;
+                MyListItem mli = (MyListItem)bindingGroup.Items[0];
+                int num =Convert.ToInt32((string)bindingGroup.GetValue(mli, "Num"));
+                if (num < 0)
+                {
+                    return new ValidationResult(false, "请输入大于等于0的数字");
+                }
+                if (num > mli.Remain)
+                {
+                    return new ValidationResult(false, "输入的数量超过上限");
+                }
+                return new ValidationResult(true, null);
+            }
+            catch(Exception ex)
+            {
+                return new ValidationResult(false, "请输入合法的数字");
+            }
+           
         }
     }
 }
