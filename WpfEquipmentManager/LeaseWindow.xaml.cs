@@ -62,7 +62,7 @@ namespace WpfEquipmentManager
                         {
                             Name = NameTextBox.Text,
                             Card = "NO."+CardTextBox.Text,
-                            Phone = "+86 " + PhoneTextBox.Text,
+                            Phone = "Phone." + PhoneTextBox.Text,
                             Start = DateTime.Now,
                             EquipmentId = item.Equipment.Id,
                             LendNum = item.Num,

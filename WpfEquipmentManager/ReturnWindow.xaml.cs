@@ -19,9 +19,10 @@ namespace WpfEquipmentManager
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
+            lrlis = new List<ReturnListItem>();
             using (var context=new EMDBEntities())
             {
-                List<Record> lrs;
+                List<Record> lrs = new List<Record>();
                 string card = CardPhoneTextBox.Text.Trim();
                 double totalMoney = 0;
                 if (Combobox1.SelectedIndex==1)
@@ -29,7 +30,7 @@ namespace WpfEquipmentManager
                     lrs = context.Records.Where(m => m.Card == "NO."+card).Where(m => m.Finish == 0).ToList();
                 }else
                 {
-                    lrs = context.Records.Where(m => m.Phone == "+86 "+card).Where(m => m.Finish == 0).ToList();
+                    lrs = context.Records.Where(m => m.Phone == "Phone."+card).Where(m => m.Finish == 0).ToList();
                 }
                 foreach(var item in lrs)
                 {
@@ -47,12 +48,9 @@ namespace WpfEquipmentManager
                     totalMoney += rli.Money;
                     lrlis.Add(rli);
                 }
-                if (lrlis.Count > 0)
-                {
-                    ReturnListDataGrid.DataContext = lrlis;
-                    TotalMoneyTextBlock.Text = totalMoney.ToString();
-                }
-                else
+                ReturnListDataGrid.DataContext = lrlis;
+                TotalMoneyTextBlock.Text = totalMoney.ToString();
+                if (lrlis.Count == 0)
                 {
                     MessageBox.Show("没有检测到租赁记录");
                 }
